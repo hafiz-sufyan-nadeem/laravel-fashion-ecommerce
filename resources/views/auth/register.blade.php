@@ -8,11 +8,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-  <link href="img/logo/logo.png" rel="icon">
+  <link href="{{asset('img/logo/logo.png')}}" rel="icon">
   <title>RuangAdmin - Register</title>
-  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-  <link href="css/ruang-admin.min.css" rel="stylesheet">
+  <link href="{{asset('vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
+  <link href="{{asset('vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css">
+  <link href="{{asset('css/ruang-admin.min.css')}}" rel="stylesheet">
 
 </head>
 
@@ -56,16 +56,16 @@
                       <button type="submit" class="btn btn-primary btn-block">Register</button>
                     </div>
                     <hr>
-                    <a href="index.html" class="btn btn-google btn-block">
+                    <a href="{{route('auth.register')}}" class="btn btn-google btn-block">
                       <i class="fab fa-google fa-fw"></i> Register with Google
                     </a>
-                    <a href="index.html" class="btn btn-facebook btn-block">
+                    <a href="{{route('auth.register')}}" class="btn btn-facebook btn-block">
                       <i class="fab fa-facebook-f fa-fw"></i> Register with Facebook
                     </a>
                   </form>
                   <hr>
                   <div class="text-center">
-                    <a class="font-weight-bold small" href="login.html">Already have an account?</a>
+                    <a class="font-weight-bold small" href="{{route('auth.login')}}">Already have an account?</a>
                   </div>
                   <div class="text-center">
                   </div>
@@ -78,10 +78,10 @@
     </div>
   </div>
   <!-- Register Content -->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-  <script src="js/ruang-admin.min.js"></script>
+  <script src="{{asset('vendor/jquery/jquery.min.js')}}"></script>
+  <script src="{{asset('vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+  <script src="{{asset('vendor/jquery-easing/jquery.easing.min.js')}}"></script>
+  <script src="{{asset('js/ruang-admin.min.js')}}"></script>
 </body>
 
 </html>

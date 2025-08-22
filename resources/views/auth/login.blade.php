@@ -8,11 +8,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-  <link href="img/logo/logo.png" rel="icon">
+  <link href="{{asset('img/logo/logo.png')}}" rel="icon">
   <title>RuangAdmin - Login</title>
-  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-  <link href="css/ruang-admin.min.css" rel="stylesheet">
+  <link href="{{asset('vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
+  <link href="{{asset('vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css">
+  <link href="{{asset('css/ruang-admin.min.css')}}" rel="stylesheet">
 
 </head>
 
@@ -45,19 +45,19 @@
                       </div>
                     </div>
                     <div class="form-group">
-                      <a href="index.html" class="btn btn-primary btn-block">Login</a>
+                      <a href="{{route('auth.login')}}" class="btn btn-primary btn-block">Login</a>
                     </div>
                     <hr>
-                    <a href="index.html" class="btn btn-google btn-block">
+                    <a href="{{route('auth.login')}}" class="btn btn-google btn-block">
                       <i class="fab fa-google fa-fw"></i> Login with Google
                     </a>
-                    <a href="index.html" class="btn btn-facebook btn-block">
+                    <a href="{{route('auth.login')}}" class="btn btn-facebook btn-block">
                       <i class="fab fa-facebook-f fa-fw"></i> Login with Facebook
                     </a>
                   </form>
                   <hr>
                   <div class="text-center">
-                    <a class="font-weight-bold small" href="register.html">Create an Account!</a>
+                    <a class="font-weight-bold small" href="{{route('auth.register')}}">Create an Account!</a>
                   </div>
                   <div class="text-center">
                   </div>
@@ -70,10 +70,10 @@
     </div>
   </div>
   <!-- Login Content -->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-  <script src="js/ruang-admin.min.js"></script>
+  <script src="{{asset('vendor/jquery/jquery.min.js')}}"></script>
+  <script src="{{asset('vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+  <script src="{{asset('vendor/jquery-easing/jquery.easing.min.js')}}"></script>
+  <script src="{{asset('js/ruang-admin.min.js')}}"></script>
 </body>
 
 </html>
