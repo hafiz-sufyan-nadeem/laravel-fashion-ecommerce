@@ -17,3 +17,7 @@ Route::get('/register', function () {
 Route::post('/login', [AuthController::class, 'login'])->name('login.post');
 Route::post('/register', [AuthController::class, 'register'])->name('register.post');
 Route::post('logout', [AuthController::class, 'logout'])->name('logout');
+
+Route::get('home', function (){
+    return view('frontend.layouts.home');
+});
