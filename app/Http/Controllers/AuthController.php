@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use  Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
-use MongoDB\Driver\Session;
 
 class AuthController extends Controller
 {
@@ -14,9 +13,15 @@ class AuthController extends Controller
     {
         $credentials = $request->only('email', 'password');
         if (auth()->attempt($credentials)) {
-            return redirect()->intended('admin/dashboard');
+            $user = auth()->user();
+
+            if($user->is_admin){
+                return redirect()->route('admin.dashboard');
+            }else {
+                return redirect()->route('home');
+            }
         }
-        return back()->with('error', 'Invalid Email or Password');
+        return back()->withErrors(['email' => 'Invalid credentials']);
     }
 
     public function register(Request $request)
@@ -33,7 +38,7 @@ class AuthController extends Controller
         $user->save();
 
         Auth::login($user);
-        return redirect('admin/dashboard')->with('success', 'Registration Successful');
+        return redirect('fronternd.layouts.home')->with('success', 'Registration Successful');
     }
 
     public function logout(Request $request)
