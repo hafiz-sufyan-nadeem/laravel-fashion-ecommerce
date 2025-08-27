@@ -3,10 +3,11 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\AuthController;
+use App\Http\Middleware\AdminMiddleware;
 
-Route::get('admin/dashboard', [DashboardController::class, 'index'])
-    ->name('admin.dashboard')
-    ->middleware('admin');
+Route::middleware([AdminMiddleware::class])->group(function () {
+    Route::get('admin/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
+});
 
 // auth views
 Route::get('/login', function () {
