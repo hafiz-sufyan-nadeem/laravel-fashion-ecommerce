@@ -106,6 +106,7 @@
                               <span class="padding_10">Cart</span></a>
                            </li>
 
+                            @auth
                             <li>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                     @csrf
@@ -117,8 +118,20 @@
                                     <span class="padding_10">Logout</span>
                                 </a>
                             </li>
+                            @else
 
+                            <li>
+                                <form id="login-form" action="{{ route('login.post') }}" method="GET" style="display: none;">
+                                    @csrf
+                                </form>
 
+                                <a href="#" style="margin-left: 20px" class="btn btn-dark"
+                                   onclick="event.preventDefault(); document.getElementById('login-form').submit();">
+                                    <i class="bi bi-box-arrow-right"></i>
+                                    <span class="padding_10">Login</span>
+                                </a>
+                            </li>
+                            @endauth
 
                         </ul>
                      </div>
