@@ -11,7 +11,7 @@ class ProductStoreRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return auth()->check() && auth()->user()->is_admin == 1;
     }
 
     /**
@@ -28,7 +28,6 @@ class ProductStoreRequest extends FormRequest
             'image' => 'required',
             'stock' => 'required',
             'quantity' => 'required',
-            'category_id' => 'nullable',
         ];
     }
 }

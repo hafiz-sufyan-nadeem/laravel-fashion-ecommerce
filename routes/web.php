@@ -8,6 +8,11 @@ use App\Http\Controllers\ProductController;
 
 Route::middleware([AdminMiddleware::class])->group(function () {
     Route::get('admin/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
+
+    Route::prefix('admin')->name('admin.')->group(function () {
+        Route::resource('products', ProductController::class);
+    });
+
 });
 
 // auth views
@@ -29,4 +34,3 @@ Route::get('/home', function (){
     return view('frontend.layouts.home');
 })->name('home');
 
-Route::resource('product', ProductController::class);
