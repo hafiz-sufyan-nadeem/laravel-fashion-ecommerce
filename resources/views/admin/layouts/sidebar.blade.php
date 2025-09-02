@@ -13,86 +13,17 @@
     </li>
     <hr class="sidebar-divider">
     <div class="sidebar-heading">
-        Features
+        Trends
     </div>
+
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBootstrap"
-           aria-expanded="true" aria-controls="collapseBootstrap">
-            <i class="far fa-fw fa-window-maximize"></i>
-            <span>Bootstrap UI</span>
+        <a class="nav-link collapsed" href="#" >
+            <i class="bi bi-bag-check-fill"></i>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bag-check-fill" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M10.5 3.5a2.5 2.5 0 0 0-5 0V4h5zm1 0V4H15v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4h3.5v-.5a3.5 3.5 0 1 1 7 0m-.646 5.354a.5.5 0 0 0-.708-.708L7.5 10.793 6.354 9.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0z"/>
+            </svg>
+            <span>Products</span>
         </a>
-        <div id="collapseBootstrap" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Bootstrap UI</h6>
-                <a class="collapse-item" href="alerts.html">Alerts</a>
-                <a class="collapse-item" href="buttons.html">Buttons</a>
-                <a class="collapse-item" href="dropdowns.html">Dropdowns</a>
-                <a class="collapse-item" href="modals.html">Modals</a>
-                <a class="collapse-item" href="popovers.html">Popovers</a>
-                <a class="collapse-item" href="progress-bar.html">Progress Bars</a>
-            </div>
-        </div>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseForm" aria-expanded="true"
-           aria-controls="collapseForm">
-            <i class="fab fa-fw fa-wpforms"></i>
-            <span>Forms</span>
-        </a>
-        <div id="collapseForm" class="collapse" aria-labelledby="headingForm" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Forms</h6>
-                <a class="collapse-item" href="form_basics.html">Form Basics</a>
-                <a class="collapse-item" href="form_advanceds.html">Form Advanceds</a>
-            </div>
-        </div>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTable" aria-expanded="true"
-           aria-controls="collapseTable">
-            <i class="fas fa-fw fa-table"></i>
-            <span>Tables</span>
-        </a>
-        <div id="collapseTable" class="collapse" aria-labelledby="headingTable" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Tables</h6>
-                <a class="collapse-item" href="simple-tables.html">Simple Tables</a>
-                <a class="collapse-item" href="datatables.html">DataTables</a>
-            </div>
-        </div>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="ui-colors.html">
-            <i class="fas fa-fw fa-palette"></i>
-            <span>UI Colors</span>
-        </a>
-    </li>
-    <hr class="sidebar-divider">
-    <div class="sidebar-heading">
-        Examples
-    </div>
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePage" aria-expanded="true"
-           aria-controls="collapsePage">
-            <i class="fas fa-fw fa-columns"></i>
-            <span>Pages</span>
-        </a>
-        <div id="collapsePage" class="collapse" aria-labelledby="headingPage" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Example Pages</h6>
-                <a class="collapse-item" href="login.html">Login</a>
-                <a class="collapse-item" href="register.html">Register</a>
-                <a class="collapse-item" href="404.html">404 Page</a>
-                <a class="collapse-item" href="blank.html">Blank Page</a>
-            </div>
-        </div>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="charts.html">
-            <i class="fas fa-fw fa-chart-area"></i>
-            <span>Charts</span>
-        </a>
-    </li>
-    <hr class="sidebar-divider">
-    <div class="version" id="version-ruangadmin"></div>
+
+
 </ul>
