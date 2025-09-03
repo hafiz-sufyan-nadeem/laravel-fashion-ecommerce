@@ -59,21 +59,23 @@
          <div class="header_section">
             <div class="container">
                <div class="containt_main">
-                  <div id="mySidenav" class="sidenav">
-                     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-                     <a href="index.html">Home</a>
-                     <a href="fashion.html">Fashion</a>
-                     <a href="electronic.html">Electronic</a>
-                     <a href="jewellery.html">Jewellery</a>
-                  </div>
-                  <span class="toggle_icon" onclick="openNav()"><img src="{{asset('frontend/images/toggle-icon.png')}}"></span>
+
+{{--                  <div id="mySidenav" class="sidenav">--}}
+{{--                     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>--}}
+{{--                     <a href="index.html">Home</a>--}}
+{{--                     <a href="fashion.html">Fashion</a>--}}
+{{--                     <a href="electronic.html">Electronic</a>--}}
+{{--                     <a href="jewellery.html">Jewellery</a>--}}
+{{--                  </div>--}}
+{{--                  <span class="toggle_icon" onclick="openNav()"><img src="{{asset('frontend/images/toggle-icon.png')}}"></span>--}}
+
                   <div class="dropdown">
                      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">All Category
                      </button>
                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
+                        <a class="dropdown-item" href="#">Fashion</a>
+                        <a class="dropdown-item" href="#">Electronic</a>
+                        <a class="dropdown-item" href="#">Jewellery</a>
                      </div>
                   </div>
                   <div class="main">

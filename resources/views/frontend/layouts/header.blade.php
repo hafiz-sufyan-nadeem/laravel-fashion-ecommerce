@@ -9,7 +9,6 @@
                         <li><a href="#">New Releases</a></li>
                         <li><a href="#">Today's Deals</a></li>
                         <li><a href="#">Customer Service</a></li>
-{{--                        <li><a href="#" class="btn btn-outline-danger" style="margin-left: 30px">Logout</a></li>--}}
                     </ul>
                 </div>
             </div>
