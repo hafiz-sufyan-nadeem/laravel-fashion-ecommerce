@@ -3,7 +3,9 @@
 @section('content')
 
     <div class="card mt-5">
-        <h2 class="card-header">Products</h2>
+        <h2 class="card-header">Products
+            <a class="btn btn-dark" style="margin-left: 870px" href="{{route('admin.dashboard')}}">Back</a>
+        </h2>
         <div class="card-body">
 
             @session('success')
