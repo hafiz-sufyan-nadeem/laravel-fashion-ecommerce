@@ -11,7 +11,7 @@
                     Back</a>
             </div>
 
-            <form action="{{ route('products.update',$product->id) }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('admin.products.update',$product->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
 
@@ -31,17 +31,17 @@
 
                 <div class="mb-3">
                     <label for="inputDetail" class="form-label"><strong>Price:</strong></label>
-                    <textarea
-                        class="form-control @error('price') is-invalid @enderror"
-                        style="height:150px"
+                    <input
+                        type="number"
+                        step="0.01"
                         name="price"
-                        id="inputDetail"
-                        placeholder="Price"></textarea>
+                        class="form-control @error('price') is-invalid @enderror"
+                        id="inputPrice"
+                        placeholder="Price">
                     @error('price')
                     <div class="form-text text-danger">{{ $message }}</div>
                     @enderror
                 </div>
-
                 <div class="mb-3">
                     <label for="inputDetail" class="form-label"><strong>Description:</strong></label>
                     <textarea
@@ -70,12 +70,10 @@
 
                 <div class="mb-3">
                     <label for="inputDetail" class="form-label"><strong>Stock:</strong></label>
-                    <textarea
-                        class="form-control @error('stock') is-invalid @enderror"
-                        style="height:150px"
-                        name="stock"
-                        id="inputDetail"
-                        placeholder="Stock"></textarea>
+                    <select name="stock" class="form-control">
+                        <option value="1">In Stock</option>
+                        <option value="0">Out of Stock</option>
+                    </select>
                     @error('stock')
                     <div class="form-text text-danger">{{ $message }}</div>
                     @enderror
@@ -83,12 +81,8 @@
 
                 <div class="mb-3">
                     <label for="inputDetail" class="form-label"><strong>Quantity:</strong></label>
-                    <textarea
-                        class="form-control @error('quantity') is-invalid @enderror"
-                        style="height:150px"
-                        name="quantity"
-                        id="inputDetail"
-                        placeholder="Quantity"></textarea>
+                    <input type="number" name="quantity" class="form-control">
+                    @error('quantity') is-invalid @enderror
                     @error('quantity')
                     <div class="form-text text-danger">{{ $message }}</div>
                     @enderror
