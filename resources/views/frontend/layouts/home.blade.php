@@ -74,7 +74,7 @@
                      </button>
                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <a class="dropdown-item" href="#">Fashion</a>
-                        <a class="dropdown-item" href="#">Electronic</a>
+                        <a class="dropdown-item" href="#">Electronics</a>
                         <a class="dropdown-item" href="#">Jewellery</a>
                      </div>
                   </div>
