@@ -16,4 +16,10 @@ class HomeController extends Controller
         return view('frontend.layouts.home',
             compact('fashionProducts', 'electronicProducts', 'jewelleryProducts'));
     }
+
+    public function show($id)
+    {
+     $product = Product::findOrFail($id);
+     return view('frontend.products.show', compact('product'));
+    }
 }
