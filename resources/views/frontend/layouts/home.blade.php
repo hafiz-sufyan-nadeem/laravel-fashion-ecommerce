@@ -2,7 +2,8 @@
 <html lang="en">
    <head>
       <!-- basic -->
-      <meta charset="utf-8">
+       <meta name="csrf-token" content="{{ csrf_token() }}">
+       <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <!-- mobile metas -->
@@ -55,91 +56,76 @@
             </div>
          </div>
          <!-- logo section end -->
-         <!-- header section start -->
-         <div class="header_section">
-            <div class="container">
-               <div class="containt_main">
 
-{{--                  <div id="mySidenav" class="sidenav">--}}
-{{--                     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>--}}
-{{--                     <a href="index.html">Home</a>--}}
-{{--                     <a href="fashion.html">Fashion</a>--}}
-{{--                     <a href="electronic.html">Electronic</a>--}}
-{{--                     <a href="jewellery.html">Jewellery</a>--}}
-{{--                  </div>--}}
-{{--                  <span class="toggle_icon" onclick="openNav()"><img src="{{asset('frontend/images/toggle-icon.png')}}"></span>--}}
+          <!-- header section start -->
+          <div class="header_section">
+              <div class="container">
+                  <div class="containt_main">
 
-                  <div class="dropdown">
-                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">All Category
-                     </button>
-                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="#">Fashion</a>
-                        <a class="dropdown-item" href="#">Electronics</a>
-                        <a class="dropdown-item" href="#">Jewellery</a>
-                     </div>
+                      <div class="dropdown">
+                          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">All Category
+                          </button>
+                          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                              <a class="dropdown-item" href="#">Fashion</a>
+                              <a class="dropdown-item" href="#">Electronics</a>
+                              <a class="dropdown-item" href="#">Jewellery</a>
+                          </div>
+                      </div>
+
+                      <div class="main">
+                          <!-- Another variation with a button -->
+                          <div class="input-group">
+                              <input type="text" class="form-control" placeholder="Search this blog">
+                              <div class="input-group-append">
+                                  <button class="btn btn-secondary" type="button" style="background-color: #f26522; border-color:#f26522 ">
+                                      <i class="fa fa-search"></i>
+                                  </button>
+                              </div>
+                          </div>
+                      </div>
+
+                      <div class="header_box">
+                          <div class="login_menu">
+                                  <div class="dropdown">
+                                      <button type="button" class="btn btn-info dropdown-toggle mt-1" data-bs-toggle="dropdown">
+                                          <i class="fa fa-shopping-cart" aria-hidden="true"></i> Cart <span class="badge badge-pill badge-danger"></span>
+                                      </button>
+                                  </div>
+                              <ul>
+                                  @auth
+                                      <li>
+                                          <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                              @csrf
+                                          </form>
+
+                                          <a href="#" style="margin-left: 20px" class="btn btn-dark"
+                                             onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                              <i class="bi bi-box-arrow-right"></i>
+                                              <span class="padding_10">Logout</span>
+                                          </a>
+                                      </li>
+                                  @else
+                                      <li>
+                                          <form id="login-form" action="{{ route('login.post') }}" method="GET" style="display: none;">
+                                              @csrf
+                                          </form>
+
+                                          <a href="#" style="margin-left: 20px" class="btn btn-dark"
+                                             onclick="event.preventDefault(); document.getElementById('login-form').submit();">
+                                              <i class="bi bi-box-arrow-right"></i>
+                                              <span class="padding_10">Login</span>
+                                          </a>
+                                      </li>
+                                  @endauth
+                              </ul>
+                          </div>
+                      </div>
+
                   </div>
-                  <div class="main">
-                     <!-- Another variation with a button -->
-                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search this blog">
-                        <div class="input-group-append">
-                           <button class="btn btn-secondary" type="button" style="background-color: #f26522; border-color:#f26522 ">
-                           <i class="fa fa-search"></i>
-                           </button>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="header_box">
-{{--                     <div class="lang_box ">--}}
-{{--                        <a href="#" title="Language" class="nav-link" data-toggle="dropdown" aria-expanded="true">--}}
-{{--                        <img src="{{asset('frontend/images/flag-uk.png')}}" alt="flag" class="mr-2 " title="United Kingdom"> English <i class="fa fa-angle-down ml-2" aria-hidden="true"></i>--}}
-{{--                        </a>--}}
-{{--                        <div class="dropdown-menu ">--}}
-{{--                           <a href="#" class="dropdown-item">--}}
-{{--                           <img src="{{asset('frontend/images/flag-france.png')}}" class="mr-2" alt="flag">--}}
-{{--                           French--}}
-{{--                           </a>--}}
-{{--                        </div>--}}
-{{--                     </div>--}}
-                     <div class="login_menu">
-                         <div class="dropdown">
-                             <button type="button" class="btn btn-dark dropdown-toggle mt-1" data-bs-toggle="dropdown">
-                                 <i class="fa fa-shopping-cart" aria-hidden="true"></i> Cart <span class="badge badge-pill badge-danger"></span>
-                             </button>
-                         </div>
-                        <ul>
-                        @auth
-                            <li>
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                    @csrf
-                                </form>
+              </div>
+          </div>
+          <!-- header section end -->
 
-                                <a href="#" style="margin-left: 20px" class="btn btn-dark"
-                                   onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                    <i class="bi bi-box-arrow-right"></i>
-                                    <span class="padding_10">Logout</span>
-                                </a>
-                            </li>
-                            @else
-                            <li>
-                                <form id="login-form" action="{{ route('login.post') }}" method="GET" style="display: none;">
-                                    @csrf
-                                </form>
-
-                                <a href="#" style="margin-left: 20px" class="btn btn-dark"
-                                   onclick="event.preventDefault(); document.getElementById('login-form').submit();">
-                                    <i class="bi bi-box-arrow-right"></i>
-                                    <span class="padding_10">Login</span>
-                                </a>
-                            </li>
-                            @endauth
-                        </ul>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </div>
-         <!-- header section end -->
 
          <!-- banner section start -->
           @include('frontend.layouts.banner')
@@ -179,19 +165,10 @@
                                                   </div>
 
                                                   <div class="btn_main">
-                                                      {{-- Add to Cart Button --}}
-                                                      <form action="#" method="POST" style="display:inline;">
-                                                          @csrf
-                                                          <input type="hidden" name="product_id" value="{{ $product->id }}">
-                                                          <input type="hidden" name="quantity" value="1">
-                                                          <button class="buy_bt"><a href="#">Buy Now</a></button>
-                                                      </form>
-
-                                                      {{-- See More --}}
-                                                      <div class="seemore_bt">
-                                                          <a href="{{ route('products.show', ['id' => $product->id]) }}">See More</a>
-                                                      </div>
+                                                      <div class="buy_bt"><a href="#">Buy Now</a></div>
+                                                      <div class="seemore_bt"><a href="{{route('products.show', ['id' => $product->id])}}">See More</a></div>
                                                   </div>
+
 
                                               </div>
                                           </div>
@@ -342,6 +319,7 @@
               document.getElementById('success-alert').style.display = 'none';
           }, 3000);
       </script>
+
 
    </body>
 </html>
