@@ -102,13 +102,13 @@
 {{--                        </div>--}}
 {{--                     </div>--}}
                      <div class="login_menu">
+                         <div class="dropdown">
+                             <button type="button" class="btn btn-dark dropdown-toggle mt-1" data-bs-toggle="dropdown">
+                                 <i class="fa fa-shopping-cart" aria-hidden="true"></i> Cart <span class="badge badge-pill badge-danger"></span>
+                             </button>
+                         </div>
                         <ul>
-                           <li><a href="#">
-                              <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                              <span class="padding_10">Cart</span></a>
-                           </li>
-
-                            @auth
+                        @auth
                             <li>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                     @csrf
@@ -121,7 +121,6 @@
                                 </a>
                             </li>
                             @else
-
                             <li>
                                 <form id="login-form" action="{{ route('login.post') }}" method="GET" style="display: none;">
                                     @csrf
@@ -134,7 +133,6 @@
                                 </a>
                             </li>
                             @endauth
-
                         </ul>
                      </div>
                   </div>
@@ -151,6 +149,14 @@
       <!-- banner bg main end -->
 
       <!-- fashion section start -->
+      @if(session('success'))
+          <div id="success-alert" class="alert alert-success text-center"
+               style="position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
+                z-index: 9999; width: auto; min-width: 300px;">
+              {{ session('success') }}
+          </div>
+      @endif
+
       <div class="fashion_section">
           <div id="main_slider" class="carousel slide" data-ride="carousel">
               <div class="carousel-inner">
@@ -171,10 +177,22 @@
                                                   <div class="tshirt_img">
                                                       <img src="{{ asset('storage/'.$product->image) }}">
                                                   </div>
+
                                                   <div class="btn_main">
-                                                      <div class="buy_bt"><a href="#">Buy Now</a></div>
-                                                      <div class="seemore_bt"><a href="{{route('products.show',['id' => $product->id])}}">See More</a></div>
+                                                      {{-- Add to Cart Button --}}
+                                                      <form action="#" method="POST" style="display:inline;">
+                                                          @csrf
+                                                          <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                                          <input type="hidden" name="quantity" value="1">
+                                                          <button class="buy_bt"><a href="#">Buy Now</a></button>
+                                                      </form>
+
+                                                      {{-- See More --}}
+                                                      <div class="seemore_bt">
+                                                          <a href="{{ route('products.show', ['id' => $product->id]) }}">See More</a>
+                                                      </div>
                                                   </div>
+
                                               </div>
                                           </div>
                                       @endforeach
@@ -309,5 +327,21 @@
            document.getElementById("mySidenav").style.width = "0";
          }
       </script>
+
+      <script>
+          document.addEventListener('DOMContentLoaded', () => {
+              const cartNav = document.querySelector('.cart-nav');
+              const dropdown = cartNav.querySelector('.cart-dropdown');
+              cartNav.addEventListener('mouseenter', () => dropdown.style.display = 'block');
+              cartNav.addEventListener('mouseleave', () => dropdown.style.display = 'none');
+          });
+      </script>
+
+      <script>
+          setTimeout(function(){
+              document.getElementById('success-alert').style.display = 'none';
+          }, 3000);
+      </script>
+
    </body>
 </html>
