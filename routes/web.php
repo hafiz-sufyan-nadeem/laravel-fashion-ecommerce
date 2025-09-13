@@ -38,3 +38,4 @@ Route::get('/home', function (){
 Route::get('/', [HomeController::class, 'home'])->name('home');
 
 Route::get('/products/{id}', [HomeController::class, 'show'])->name('products.show');
+
