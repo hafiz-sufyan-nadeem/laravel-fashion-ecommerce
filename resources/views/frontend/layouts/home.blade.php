@@ -189,7 +189,6 @@
               </a>
           </div>
       </div>
-      </div>
       <!-- fashion section end -->
 
 
