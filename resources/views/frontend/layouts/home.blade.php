@@ -165,7 +165,10 @@
                                                   </div>
 
                                                   <div class="btn_main">
+                                                      <form action="{{ route('cart.add', $product->id) }}" method="POST">
+                                                          @csrf
                                                       <div class="buy_bt"><a href="#">Buy Now</a></div>
+                                                      </form>
                                                       <div class="seemore_bt"><a href="{{route('products.show', ['id' => $product->id])}}">See More</a></div>
                                                   </div>
 

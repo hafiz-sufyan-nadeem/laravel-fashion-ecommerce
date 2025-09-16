@@ -6,7 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Middleware\AdminMiddleware;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\HomeController;
-
+use App\Http\Controllers\CartController;
 
 Route::middleware([AdminMiddleware::class])->group(function () {
     Route::get('admin/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
@@ -42,3 +42,4 @@ Route::get('/products/{id}', [HomeController::class, 'show'])->name('products.sh
 
 
 
+Route::post('/cart/add/{id}', [CartController::class, 'addToCart'])->name('cart.add');
