@@ -86,9 +86,13 @@
 
                       <div class="header_box">
                           <div class="login_menu">
+                              @php
+                              $cartCount = \App\Models\CartItem::where('user_id', auth()->id())->sum('quantity');
+                              @endphp
                                   <div class="dropdown">
                                       <button type="button" class="btn btn-info dropdown-toggle mt-1" data-bs-toggle="dropdown">
-                                          <i class="fa fa-shopping-cart" aria-hidden="true"></i> Cart <span class="badge badge-pill badge-danger"></span>
+                                          <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                                          Cart <span class="badge badge-pill badge-danger">{{ $cartCount }}</span>
                                       </button>
                                   </div>
                               <ul>
