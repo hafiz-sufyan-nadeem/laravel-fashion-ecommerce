@@ -168,11 +168,18 @@
                                                   </div>
 
                                                   <div class="btn_main">
+                                                      @if(auth()->check())
                                                       <form action="{{ route('cart.add', $product->id) }}" method="POST">
                                                           @csrf
-                                                      <div class="buy_bt"><a href="#">Buy Now</a></div>
+                                                      <div class="buy_bt">
+                                                          <button type="submit" class="btn btn-primary">Buy Now</button>
+                                                      </div>
                                                       </form>
-                                                      <div class="seemore_bt"><a href="{{route('products.show', ['id' => $product->id])}}">See More</a></div>
+                                                      @else
+                                                          <a href="{{ route('login.post') }}" class="btn btn-warning">Login to Buy</a>
+                                                      @endif
+
+                                                          <div class="seemore_bt"><a href="{{route('products.show', ['id' => $product->id])}}">See More</a></div>
                                                   </div>
 
 

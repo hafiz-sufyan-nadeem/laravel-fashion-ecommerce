@@ -31,7 +31,7 @@ class CartController extends Controller
     {
         $cartItems = CartItem::where('user_id', auth()->id())->with('product')->get();
         $total = $cartItems->sum(fn($item) => $item->price * $item->quantity);
-        return view('cart', compact('cartItems', 'total'));
+        return view('cart.index', compact('cartItems', 'total'));
     }
 
     public function update(Request $request, $id)
