@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CartItem;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -24,5 +25,12 @@ class CartController extends Controller
             ]);
         }
         return back()->with('success', 'Product added to cart successfully!');
+    }
+
+    public function viewCart()
+    {
+        $cartItems = CartItem::where('user_id', auth()->id())->with('product')->get();
+        $total = $cartItems->sum(fn($item) => $item->price * $item->quantity);
+        return view('cart', compact('cartItems', 'total'));
     }
 }
