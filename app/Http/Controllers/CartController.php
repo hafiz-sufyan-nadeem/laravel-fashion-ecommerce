@@ -34,6 +34,23 @@ class CartController extends Controller
         return view('cart', compact('cartItems', 'total'));
     }
 
+    public function update(Request $request, $id)
+    {
+        $cartItem = CartItem::where('user_id', auth()->id())->findOrFail($id);
+        $cartItem->quantity = $request->quantity;
+        $cartItem->save();
+
+        return back()->with('success','Quantity updated!');
+    }
+
+    public function delete($id)
+    {
+        $cartItem = CartItem::where('user_id', auth()->id())->findOrFail($id);
+        $cartItem->delete();
+
+        return back()->with('success','Item removed!');
+    }
+
     public function checkoutForm(){
         return view('cart.checkout');
     }
