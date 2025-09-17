@@ -33,4 +33,9 @@ class CartController extends Controller
         $total = $cartItems->sum(fn($item) => $item->price * $item->quantity);
         return view('cart', compact('cartItems', 'total'));
     }
+
+    public function checkoutForm(){
+        return view('cart.checkout');
+    }
+
 }
