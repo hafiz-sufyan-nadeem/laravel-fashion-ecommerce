@@ -86,34 +86,37 @@
 
                       <div class="header_box">
                           <div class="login_menu">
-                              @php
-                                  $cartCount = \App\Models\CartItem::where('user_id', auth()->id())->sum('quantity');
-                              @endphp
-                              <a href="{{ route('cart.view') }}" class="btn btn-info mt-1">
-                                  <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                                  Cart <span class="badge badge-pill badge-danger">{{ $cartCount }}</span>
-                              </a>
-
-                              <ul>
+                              <ul class="d-flex align-items-center">
                                   @auth
+                                      {{-- Cart Button --}}
+                                      @php
+                                          $cartCount = \App\Models\CartItem::where('user_id', auth()->id())->sum('quantity');
+                                      @endphp
+                                      <li class="mr-2">
+                                          <a href="{{ route('cart.view') }}" class="btn btn-info">
+                                              <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                                              Cart <span class="badge badge-pill badge-danger">{{ $cartCount }}</span>
+                                          </a>
+                                      </li>
+
+                                      {{-- Logout Button --}}
                                       <li>
                                           <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                               @csrf
                                           </form>
-
-                                          <a href="#" style="margin-left: 20px" class="btn btn-dark"
+                                          <a href="#" class="btn btn-dark"
                                              onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                               <i class="bi bi-box-arrow-right"></i>
                                               <span class="padding_10">Logout</span>
                                           </a>
                                       </li>
                                   @else
+                                      {{-- Login Button --}}
                                       <li>
                                           <form id="login-form" action="{{ route('login.post') }}" method="GET" style="display: none;">
                                               @csrf
                                           </form>
-
-                                          <a href="#" style="margin-left: 20px" class="btn btn-dark"
+                                          <a href="#" class="btn btn-dark"
                                              onclick="event.preventDefault(); document.getElementById('login-form').submit();">
                                               <i class="bi bi-box-arrow-right"></i>
                                               <span class="padding_10">Login</span>
@@ -122,6 +125,7 @@
                                   @endauth
                               </ul>
                           </div>
+
                       </div>
 
                   </div>

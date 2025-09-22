@@ -30,8 +30,22 @@ class CartController extends Controller
     public function viewCart()
     {
         $cartItems = CartItem::where('user_id', auth()->id())->with('product')->get();
-        $total = $cartItems->sum(fn($item) => $item->price * $item->quantity);
-        return view('cart.index', compact('cartItems', 'total'));
+
+        // subtotal = sum(price * quantity)
+        $subtotal = $cartItems->sum(function($item){
+            return $item->price * $item->quantity;
+        });
+
+        // 16% sales tax
+        $taxRate = 0.16;
+        $tax = round($subtotal * $taxRate, 2);
+
+        // shipping rule: free if subtotal >= 1000
+        $shipping = $subtotal >= 1000 ? 0 : 20;
+
+        $grandTotal = round($subtotal + $tax + $shipping, 2);
+
+        return view('cart.index', compact('cartItems', 'subtotal', 'tax', 'shipping', 'grandTotal'));
     }
 
     public function update(Request $request, $id)
