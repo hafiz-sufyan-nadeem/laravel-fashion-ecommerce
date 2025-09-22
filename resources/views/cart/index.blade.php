@@ -21,7 +21,7 @@
                         </div>
 
                         <div class="col price-col">
-                            ${{ number_format($item->price, 2) }}
+                            PKR {{ number_format($item->price, 2) }}
                         </div>
 
                         <div class="col qty-col">
@@ -37,7 +37,7 @@
                         </div>
 
                         <div class="col total-col">
-                            <div class="line-total">${{ number_format($item->price * $item->quantity, 2) }}</div>
+                            <div class="line-total">PKR {{ number_format($item->price * $item->quantity, 2) }}</div>
 
                             <form action="{{ route('cart.delete', $item->id) }}" method="POST" class="delete-form">
                                 @csrf
@@ -52,8 +52,8 @@
             <!-- Right: summary -->
             <aside class="cart-summary">
                 <div class="summary-card">
-                    <div class="summary-row"><span>Subtotal:</span><span>${{ number_format($subtotal, 2) }}</span></div>
-                    <div class="summary-row"><span>Sales Tax:</span><span>${{ number_format($tax, 2) }}</span></div>
+                    <div class="summary-row"><span>Subtotal:</span><span>PKR {{ number_format($subtotal, 2) }}</span></div>
+                    <div class="summary-row"><span>Sales Tax:</span><span>PKR {{ number_format($tax, 2) }}</span></div>
                     <div class="summary-row"><span>Shipping:</span><span>{{ $shipping == 0 ? 'Free' : '$'.number_format($shipping, 2) }}</span></div>
 
                     <div class="summary-row coupon">
@@ -69,7 +69,7 @@
 
                     <div class="summary-row grand">
                         <strong>Grand total:</strong>
-                        <strong class="grand-amount">${{ number_format($grandTotal, 2) }}</strong>
+                        <strong class="grand-amount">PKR {{ number_format($grandTotal, 2) }}</strong>
                     </div>
 
                     <a href="{{ route('checkout.form') }}" class="btn-checkout">Check out</a>
