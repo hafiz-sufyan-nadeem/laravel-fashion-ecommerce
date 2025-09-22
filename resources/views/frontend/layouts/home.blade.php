@@ -206,6 +206,15 @@
 
 
       <!-- electronic section start -->
+
+      @if(session('success'))
+          <div id="success-alert" class="alert alert-success text-center"
+               style="position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
+                z-index: 9999; width: auto; min-width: 300px;">
+              {{ session('success') }}
+          </div>
+      @endif
+
       <div class="fashion_section">
           <div id="electronic_main_slider" class="carousel slide" data-ride="carousel">
               <div class="carousel-inner">
@@ -226,7 +235,17 @@
                                                       <img src="{{ asset('storage/'.$product->image) }}">
                                                   </div>
                                                   <div class="btn_main">
-                                                      <div class="buy_bt"><a href="#">Buy Now</a></div>
+                                                      @if(auth()->check())
+                                                          <form action="{{ route('cart.add', $product->id) }}" method="POST">
+                                                              @csrf
+                                                              <div class="buy_bt">
+                                                                  <button type="submit" class="btn btn-primary">Buy Now</button>
+                                                              </div>
+                                                          </form>
+                                                      @else
+                                                          <a href="{{ route('login.post') }}" class="btn btn-warning">Login to Buy</a>
+                                                      @endif
+
                                                       <div class="seemore_bt"><a href="{{route('products.show', ['id' => $product->id])}}">See More</a></div>
                                                   </div>
                                               </div>
@@ -249,6 +268,15 @@
       <!-- electronic section end -->
 
       <!-- jewellery  section start -->
+
+      @if(session('success'))
+          <div id="success-alert" class="alert alert-success text-center"
+               style="position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
+                z-index: 9999; width: auto; min-width: 300px;">
+              {{ session('success') }}
+          </div>
+      @endif
+
       <div class="fashion_section">
           <div id="jewellery_main_slider" class="carousel slide" data-ride="carousel">
               <div class="carousel-inner">
@@ -269,7 +297,17 @@
                                                       <img src="{{ asset('storage/'.$product->image) }}">
                                                   </div>
                                                   <div class="btn_main">
-                                                      <div class="buy_bt"><a href="#">Buy Now</a></div>
+                                                      @if(auth()->check())
+                                                          <form action="{{ route('cart.add', $product->id) }}" method="POST">
+                                                              @csrf
+                                                              <div class="buy_bt">
+                                                                  <button type="submit" class="btn btn-primary">Buy Now</button>
+                                                              </div>
+                                                          </form>
+                                                      @else
+                                                          <a href="{{ route('login.post') }}" class="btn btn-warning">Login to Buy</a>
+                                                      @endif
+
                                                       <div class="seemore_bt"><a href="{{route('products.show', ['id' => $product->id])}}">See More</a></div>
                                                   </div>
                                               </div>
