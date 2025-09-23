@@ -66,14 +66,18 @@
     </div>
     <div class="col-25">
         <div class="container">
-            <h4>Cart <span class="price" style="color:black"><i class="fa fa-shopping-cart"></i> <b>4</b></span></h4>
-            <p><a href="#">Nike Shoes </a> <span class="price">₹2000</span></p>
-            <p><a href="#">Jio Phone</a> <span class="price">₹1000</span></p>
-            <p><a href="#">Iphone 13 pro max</a> <span class="price">₹20000</span></p>
-            <p><a href="#">Tomato</a> <span class="price">₹400</span></p>
+            <h4>Cart <span class="price" style="color:black"><i class="fa fa-shopping-cart"></i> <b>{{ count($cartItems) }}</b></span></h4>
+            @foreach($cartItems as $item)
+                <p>
+                    <span href="#">{{ $item->product->name }}</span>
+                    <span class="price">PKR {{ $item->price * $item->quantity }}</span>
+                </p>
+            @endforeach
+
             <hr>
-            <p>Total <span class="price" style="color:black"><b>₹23400</b></span></p>
+            <p>Total <span class="price" style="color:black"><b>PKR {{ $grandTotal }}</b></span></p>
         </div>
+
     </div>
 </div>
 

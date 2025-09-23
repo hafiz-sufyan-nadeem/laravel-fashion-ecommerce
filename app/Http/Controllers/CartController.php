@@ -66,7 +66,16 @@ class CartController extends Controller
     }
 
     public function checkoutForm(){
-        return view('cart.checkout');
+        $cartItems = CartItem::with('product')->where('user_id', auth()->id())->get();
+        $subtotal = 0;
+        foreach ($cartItems as $item){
+            $subtotal += $item->price * $item->quantity;
+            $taxRate = 0.16;
+            $tax = round($subtotal * $taxRate, 2);
+            $shipping = $subtotal >= 1000 ? 0 : 20;
+            $grandTotal = round($subtotal + $tax + $shipping);
+        }
+        return view('cart.checkout', compact('cartItems', 'grandTotal'));
     }
 
 }
