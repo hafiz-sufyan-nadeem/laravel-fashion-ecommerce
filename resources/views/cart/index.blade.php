@@ -14,7 +14,7 @@
                     <img src="{{ $item->product->image ? asset('storage/'.$item->product->image) : asset('images/placeholder.png') }}">
                     <span>{{ $item->product->name }}</span>
                 </td>
-                <td>${{ $item->price }}</td>
+                <td>PKR {{ $item->price }}</td>
                 <td>
                     <form action="{{ route('cart.update',$item->id) }}" method="POST" class="qty-form">
                         @csrf
@@ -23,7 +23,7 @@
                         <button type="button" class="qty-btn plus">+</button>
                     </form>
                 </td>
-                <td>${{ $item->price * $item->quantity }}</td>
+                <td>PKR {{ $item->price * $item->quantity }}</td>
                 <td>
                     <form action="{{ route('cart.delete',$item->id) }}" method="POST">
                         @csrf
@@ -36,11 +36,11 @@
     </table>
 
     <div class="summary-box">
-        <p><span>Subtotal:</span> <span>${{ $subtotal }}</span></p>
-        <p><span>Tax:</span> <span>${{ $tax }}</span></p>
+        <p><span>Subtotal:</span> <span>PKR {{ $subtotal }}</span></p>
+        <p><span>Tax:</span> <span>PKR {{ $tax }}</span></p>
         <p><span>Shipping:</span> <span>{{ $shipping == 0 ? 'Free' : '$'.$shipping }}</span></p>
         <hr>
-        <p class="grand"><span>Grand Total:</span> <span>${{ $grandTotal }}</span></p>
+        <p class="grand"><span>Grand Total:</span> <span>PKR {{ $grandTotal }}</span></p>
 
         <a href="{{ route('checkout.form') }}" class="btn-checkout">Check out</a>
 
