@@ -20,16 +20,17 @@ Route::middleware([AdminMiddleware::class])->group(function () {
 // auth views
 Route::get('/login', function () {
     return view('auth.login');
-})->name('auth.login');
+})->name('login');
 
 Route::get('/register', function () {
     return view('auth.register');
-})->name('auth.register');
+})->name('register');
 
 // auth actions
 Route::post('/login', [AuthController::class, 'login'])->name('login.post');
 Route::post('/register', [AuthController::class, 'register'])->name('register.post');
-Route::post('logout', [AuthController::class, 'logout'])->name('logout');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
 
 // frontend home page
 Route::get('/home', function (){
@@ -42,8 +43,8 @@ Route::get('/products/{id}', [HomeController::class, 'show'])->name('products.sh
 
 
 Route::post('/cart/add/{id}', [CartController::class, 'addToCart'])->name('cart.add');
-Route::get('/cart', [CartController::class, 'viewCart'])->name('cart.view');
+Route::get('/cart', [CartController::class, 'viewCart']) ->middleware('auth')->name('cart.view');
 Route::post('/cart/update/{id}', [CartController::class, 'update'])->name('cart.update');
 Route::delete('/cart/delete/{id}', [CartController::class, 'delete'])->name('cart.delete');
 
-Route::get('/checkout', [CartController::class, 'checkoutForm'])->name('checkout.form');
+Route::get('/checkout', [CartController::class, 'checkoutForm']) ->middleware('auth')->name('checkout.form');

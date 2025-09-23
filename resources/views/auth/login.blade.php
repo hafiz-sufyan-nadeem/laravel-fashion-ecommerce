@@ -36,7 +36,7 @@
                         </div>
                     @endif
 
-                  <form method="post" action="{{route('login.post')}}" class="user">
+                  <form method="post" action="{{route('login')}}" class="user">
                       @csrf
                     <div class="form-group">
                       <input type="email" class="form-control" name="email" id="exampleInputEmail" aria-describedby="emailHelp"
@@ -64,7 +64,7 @@
                   </form>
                   <hr>
                   <div class="text-center">
-                    <a class="font-weight-bold small" href="{{route('auth.register')}}">Create an Account!</a>
+                    <a class="font-weight-bold small" href="{{route('register')}}">Create an Account!</a>
                   </div>
                   <div class="text-center">
                   </div>

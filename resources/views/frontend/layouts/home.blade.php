@@ -113,7 +113,7 @@
                                   @else
                                       {{-- Login Button --}}
                                       <li>
-                                          <form id="login-form" action="{{ route('login.post') }}" method="GET" style="display: none;">
+                                          <form id="login-form" action="{{ route('login') }}" method="GET" style="display: none;">
                                               @csrf
                                           </form>
                                           <a href="#" class="btn btn-dark"
@@ -180,7 +180,7 @@
                                                       </div>
                                                       </form>
                                                       @else
-                                                          <a href="{{ route('login.post') }}" class="btn btn-warning">Login to Buy</a>
+                                                          <a href="{{ route('login') }}" class="btn btn-warning">Login to Buy</a>
                                                       @endif
 
                                                           <div class="seemore_bt"><a href="{{route('products.show', ['id' => $product->id])}}">See More</a></div>
@@ -247,7 +247,7 @@
                                                               </div>
                                                           </form>
                                                       @else
-                                                          <a href="{{ route('login.post') }}" class="btn btn-warning">Login to Buy</a>
+                                                          <a href="{{ route('login') }}" class="btn btn-warning">Login to Buy</a>
                                                       @endif
 
                                                       <div class="seemore_bt"><a href="{{route('products.show', ['id' => $product->id])}}">See More</a></div>
@@ -309,7 +309,7 @@
                                                               </div>
                                                           </form>
                                                       @else
-                                                          <a href="{{ route('login.post') }}" class="btn btn-warning">Login to Buy</a>
+                                                          <a href="{{ route('login') }}" class="btn btn-warning">Login to Buy</a>
                                                       @endif
 
                                                       <div class="seemore_bt"><a href="{{route('products.show', ['id' => $product->id])}}">See More</a></div>

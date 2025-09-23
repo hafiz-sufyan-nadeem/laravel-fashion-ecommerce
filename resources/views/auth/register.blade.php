@@ -42,7 +42,7 @@
                         </div>
                     @endif
 
-                    <form method="post" action="{{route('register.post')}}">
+                    <form method="post" action="{{route('register')}}">
                         @csrf
                     <div class="form-group">
                       <label>First Name</label>
