@@ -41,7 +41,6 @@ Route::get('/', [HomeController::class, 'home'])->name('home');
 Route::get('/products/{id}', [HomeController::class, 'show'])->name('products.show');
 
 
-
 Route::post('/cart/add/{id}', [CartController::class, 'addToCart'])->name('cart.add');
 Route::get('/cart', [CartController::class, 'viewCart'])->name('cart.view');
 Route::post('/cart/update/{id}', [CartController::class, 'update'])->name('cart.update');

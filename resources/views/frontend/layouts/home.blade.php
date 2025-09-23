@@ -66,9 +66,9 @@
                           <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">All Category
                           </button>
                           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                              <a class="dropdown-item" href="#">Fashion</a>
-                              <a class="dropdown-item" href="#">Electronics</a>
-                              <a class="dropdown-item" href="#">Jewellery</a>
+                              <a class="dropdown-item" href="{{route('home')}}#fashion">Fashion</a>
+                              <a class="dropdown-item" href="{{route('home')}}#electronic">Electronics</a>
+                              <a class="dropdown-item" href="{{route('home')}}#jewellery">Jewellery</a>
                           </div>
                       </div>
 
@@ -150,7 +150,7 @@
           </div>
       @endif
 
-      <div class="fashion_section">
+      <div id="fashion" class="fashion_section">
           <div id="main_slider" class="carousel slide" data-ride="carousel">
               <div class="carousel-inner">
 
@@ -219,7 +219,7 @@
           </div>
       @endif
 
-      <div class="fashion_section">
+      <div id="electronics" class="fashion_section">
           <div id="electronic_main_slider" class="carousel slide" data-ride="carousel">
               <div class="carousel-inner">
                   @foreach($electronicProducts->chunk(3) as $chunkIndex => $chunk)
@@ -281,7 +281,7 @@
           </div>
       @endif
 
-      <div class="fashion_section">
+      <div id="jewellery" class="fashion_section">
           <div id="jewellery_main_slider" class="carousel slide" data-ride="carousel">
               <div class="carousel-inner">
                   @foreach($jewelleryProducts->chunk(3) as $chunkIndex => $chunk)
