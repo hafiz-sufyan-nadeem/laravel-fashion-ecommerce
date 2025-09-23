@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\CartItem;
+use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -76,6 +77,55 @@ class CartController extends Controller
             $grandTotal = round($subtotal + $tax + $shipping);
         }
         return view('cart.checkout', compact('cartItems', 'grandTotal'));
+    }
+
+    public function checkout(Request $request)
+    {
+        $cartItems = CartItem::with('product')->where('user_id', auth()->id())->get();
+
+        $subtotal = 0;
+        foreach ($cartItems as $item) {
+            $subtotal += $item->price * $item->quantity;
+        }
+        $taxRate = 0.16;
+        $tax = round($subtotal * $taxRate, 2);
+        $shipping = $subtotal >= 1000 ? 0 : 20;
+        $grandTotal = round($subtotal + $tax + $shipping);
+
+        $request->validate([
+           'firstname' => 'required',
+            'email' => 'required',
+            'address' => 'required',
+            'city' => 'required',
+            'state' => 'required',
+            'zip' => 'nullable|string',
+            'payment_method' => 'required',
+        ]);
+
+        $order = Order::create([
+           'user_id' => auth()->id(),
+           'name' => $request->firstname,
+            'email' => $request->email,
+            'address' => $request->address,
+            'city' => $request->city,
+            'state' => $request->state,
+            'zip' => $request->zip,
+            'payment_method' => $request->payment_method,
+            'total_amount' => $grandTotal,
+        ]);
+
+        foreach($cartItems as $item){
+            $order->orderItems()->create([
+                'product_id' => $item->product_id,
+                'quantity' => $item->quantity,
+                'price' => $item->price,
+                'subtotal' => $item->price * $item->quantity
+            ]);
+        }
+        // Clear the cart
+        CartItem::where('user_id', auth()->id())->delete();
+
+        return redirect()->route('home')->with('success', 'Order placed successfully!');
     }
 
 }

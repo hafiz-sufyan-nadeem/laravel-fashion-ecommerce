@@ -143,12 +143,13 @@
 
       <!-- fashion section start -->
       @if(session('success'))
-          <div id="success-alert" class="alert alert-success text-center"
+          <div class="success-alert alert alert-success text-center"
                style="position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
                 z-index: 9999; width: auto; min-width: 300px;">
               {{ session('success') }}
           </div>
       @endif
+
 
       <div id="fashion" class="fashion_section">
           <div id="main_slider" class="carousel slide" data-ride="carousel">
@@ -212,12 +213,13 @@
       <!-- electronic section start -->
 
       @if(session('success'))
-          <div id="success-alert" class="alert alert-success text-center"
+          <div class="success-alert alert alert-success text-center"
                style="position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
                 z-index: 9999; width: auto; min-width: 300px;">
               {{ session('success') }}
           </div>
       @endif
+
 
       <div id="electronics" class="fashion_section">
           <div id="electronic_main_slider" class="carousel slide" data-ride="carousel">
@@ -274,7 +276,7 @@
       <!-- jewellery  section start -->
 
       @if(session('success'))
-          <div id="success-alert" class="alert alert-success text-center"
+          <div class="success-alert alert alert-success text-center"
                style="position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
                 z-index: 9999; width: auto; min-width: 300px;">
               {{ session('success') }}
@@ -370,10 +372,15 @@
       </script>
 
       <script>
-          setTimeout(function(){
-              document.getElementById('success-alert').style.display = 'none';
-          }, 3000);
+          document.addEventListener('DOMContentLoaded', function() {
+              setTimeout(function() {
+                  document.querySelectorAll('.success-alert').forEach(function(alert) {
+                      alert.style.display = 'none';
+                  });
+              }, 3000); // 3000 ms = 3 seconds
+          });
       </script>
+
 
 
    </body>
