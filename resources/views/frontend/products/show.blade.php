@@ -3,6 +3,13 @@
     rel="stylesheet"
 >
 
+@if(session('success'))
+    <div class="success-alert alert alert-success text-center"
+         style="position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
+                z-index: 9999; width: auto; min-width: 300px;">
+        {{ session('success') }}
+    </div>
+@endif
 
 <div class="container mt-4">
     <div class="card shadow p-4">
@@ -16,13 +23,24 @@
                 <p class="text-success fs-4 fw-bold">Price: {{ $product->price }}</p>
                 <p  class="mt-3">Description: {{ $product->description }}</p>
 
-
-                <div class="d-flex align-items-center mt-3">
-                    <input type="number" min="1" value="1" class="form-control w-25 me-2">
-                    <button class="btn btn-success btn-lg">
-                        <i class="bi bi-cart"></i> Add to Cart
-                    </button>
+                <div class="btn_main">
+                    @if(auth()->check())
+                        <form action="{{ route('cart.add', $product->id) }}" method="POST">
+                            @csrf
+                            <div class="d-flex align-items-center mt-3">
+                                <input type="number" min="1" value="1" class="form-control w-25 me-2">
+                                <button class="btn btn-success btn-lg">
+                                    <i class="bi bi-cart"></i> Add to Cart
+                                </button>
+                            </div>
+                        </form>
+                    @else
+                        <a href="{{ route('login') }}" class="btn btn-warning">Login to Buy</a>
+                    @endif
                 </div>
+
+
+
             </div>
         </div>
 
@@ -33,3 +51,12 @@
 
     </div>
 </div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        setTimeout(function() {
+            document.querySelectorAll('.success-alert').forEach(function(alert) {
+                alert.style.display = 'none';
+            });
+        }, 3000); // 3000 ms = 3 seconds
+    });
+</script>

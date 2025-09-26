@@ -1,3 +1,9 @@
+<nav>
+    <form action="{{route('home')}}">
+    <button class="btn btn-dark" style="background-color: black; color: white; cursor: pointer; border-radius: 5px; padding: 2px 8px 2px 8px" type="submit">Home</button>
+    </form>
+</nav>
+
 <div class="cart-container">
     <table class="cart-table">
         <tr>
@@ -49,7 +55,6 @@
         @endif
     </div>
 </div>
-
 
 
 <style>
@@ -198,6 +203,7 @@
         text-align: center;
         margin-top: 10px;
     }
+
 
 </style>
 <script>
