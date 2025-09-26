@@ -7,6 +7,7 @@ use App\Http\Middleware\AdminMiddleware;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\OrderController;
 
 Route::middleware([AdminMiddleware::class])->group(function () {
     Route::get('admin/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
@@ -52,4 +53,4 @@ Route::get('/checkout', [CartController::class, 'checkoutForm']) ->middleware('a
 Route::post('/checkout/store', [CartController::class, 'checkout'])->middleware('auth')->name('checkout.store');
 
 
-Route::get('/orders/{order}', [OrderController::class, 'viewOrders']) ->middleware('auth')->name('orders');
+Route::get('/orders/{order}', [OrderController::class, 'showOrders']) ->middleware('auth')->name('orders.show');
