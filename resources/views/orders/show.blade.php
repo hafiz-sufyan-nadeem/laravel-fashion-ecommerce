@@ -1,7 +1,8 @@
-<h1>Order #{{$order->id}}</h1>
-<p>Placed on: {{$formattedDate}}</p>
+<h1 style="text-align:center; margin-bottom:20px; color:#333;">Order #{{$order->id}}</h1>
+<p style="text-align:center; color:#666;">Placed on: {{$formattedDate}}</p>
 
-<h3>Items:</h3>
+<h3 style="margin-top:30px; color:#444;">Items:</h3>
+
 <table border="1" cellpadding="5" cellspacing="0">
     <thead>
     <tr>
@@ -36,3 +37,41 @@
     <button class="btn btn-dark" style="background-color: black; color: white; cursor: pointer; border-radius: 5px; padding: 2px 8px 2px 8px; " type="submit">Home</button>
 </form>
 </div>
+
+<style>
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    thead tr {
+        background-color: #4CAF50;
+        color: white;
+        text-align: left;
+    }
+
+    th, td {
+        padding: 12px 15px;
+        border: 1px solid #ddd;
+    }
+
+    tbody tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+
+    tbody tr:hover {
+        background-color: #f1f1f1;
+    }
+
+    hr {
+        margin: 25px 0;
+        border: none;
+        height: 1px;
+        background: #ddd;
+    }
+
+</style>
