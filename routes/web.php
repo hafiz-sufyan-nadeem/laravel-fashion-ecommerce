@@ -54,3 +54,4 @@ Route::post('/checkout/store', [CartController::class, 'checkout'])->middleware(
 
 
 Route::get('/orders/{order}', [OrderController::class, 'showOrders']) ->middleware('auth')->name('orders.show');
+Route::get('/my-orders', [OrderController::class, 'myOrders']) ->middleware('auth')->name('my.orders');

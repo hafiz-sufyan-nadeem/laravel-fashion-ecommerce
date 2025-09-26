@@ -72,6 +72,11 @@
                           </div>
                       </div>
 
+                      @auth
+                          <a href="{{ route('my.orders') }}" class="btn btn-secondary">
+                              My Orders
+                          </a>
+                      @endauth
                       <div class="main">
                           <!-- Another variation with a button -->
                           <div class="input-group">

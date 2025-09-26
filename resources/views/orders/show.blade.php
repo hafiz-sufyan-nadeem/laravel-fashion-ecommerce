@@ -28,7 +28,7 @@
 <p><strong>Subtotal:</strong> {{ number_format($subtotal, 2) }}</p>
 <p><strong>Tax (16%):</strong> {{ number_format($tax, 2) }}</p>
 <p><strong>Shipping:</strong> {{ number_format($shipping, 2) }}</p>
-<h3><strong>Grand Total:</strong> {{ number_format($grandTotal, 2) }}</h3>
+<h3><strong>Grand Total: </strong> {{ number_format($grandTotal, 2) }}</h3>
 <hr>
 
 <div class="mr-6">

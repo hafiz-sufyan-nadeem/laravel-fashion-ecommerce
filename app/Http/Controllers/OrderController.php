@@ -26,4 +26,10 @@ class OrderController extends Controller
 
         return view('orders.show', compact('order', 'formattedDate', 'subtotal', 'tax', 'shipping', 'grandTotal'));
     }
+
+    public function myOrders()
+    {
+        $orders = Order::where('user_id', auth()->id())->with('orderItems.product')->latest()->get();
+        return view('orders.my-orders', compact('orders'));
+    }
 }
