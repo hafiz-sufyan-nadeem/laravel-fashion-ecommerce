@@ -15,6 +15,15 @@
 <div class="row">
     <div class="col-75">
         <div class="container">
+            @if ($errors->any())
+                <div style="background: #f8d7da; color: #721c24; padding: 10px; margin: 10px 0; border-radius: 5px;">
+                    <ul style="margin: 0; padding-left: 20px;">
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
             <form action="{{route('checkout.store')}}" method="POST">
                 @csrf
                 <div class="row">
