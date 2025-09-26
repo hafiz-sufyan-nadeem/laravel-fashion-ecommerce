@@ -12,7 +12,18 @@ class OrderController extends Controller
     {
         $order->load('orderItems.product');
         if ($order->user_id !== auth()->id()) abort(404);
+
         $formattedDate = $order->created_at->format('d,M,Y, h:i A');
-        return view('orders.show', compact('order', 'formattedDate'));
+
+        $subtotal = $order->orderItems->sum(function ($item){
+            return $item->price * $item->quantity;
+        });
+
+        $taxRate = 0.16;
+        $tax = round($subtotal * $taxRate, 2);
+        $shipping = $subtotal >= 1000 ? 0 : 20;
+        $grandTotal = round($subtotal + $tax + $shipping,2);
+
+        return view('orders.show', compact('order', 'formattedDate', 'subtotal', 'tax', 'shipping', 'grandTotal'));
     }
 }
