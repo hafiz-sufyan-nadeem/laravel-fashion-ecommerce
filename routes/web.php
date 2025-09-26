@@ -50,3 +50,6 @@ Route::delete('/cart/delete/{id}', [CartController::class, 'delete'])->name('car
 Route::get('/checkout', [CartController::class, 'checkoutForm']) ->middleware('auth')->name('checkout.form');
 
 Route::post('/checkout/store', [CartController::class, 'checkout'])->middleware('auth')->name('checkout.store');
+
+
+Route::get('/orders/{order}', [OrderController::class, 'viewOrders']) ->middleware('auth')->name('orders');
