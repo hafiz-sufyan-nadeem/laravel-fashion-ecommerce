@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 use App\Models\Order;
-
 use http\Client\Curl\User;
 use Illuminate\Http\Request;
 
@@ -12,14 +11,14 @@ class AdminOrderController extends Controller
     {
         // List all orders
         $orders = Order::with('user')->latest()->get();
-        return view('orders.index', compact('orders'));
+        return view('admin.orders.index', compact('orders'));
     }
 
     // show details
     public function show(Order $order)
     {
         $order->load('orderItems.product', 'user');
-        return view('orders.show', compact('order'));
+        return view('admin.orders.show', compact('order'));
     }
 
     // update status
