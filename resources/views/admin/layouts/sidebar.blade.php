@@ -24,6 +24,14 @@
             </svg>
             <span>Products</span>
         </a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link" href="#">
+            <i class="fas fa-shopping-cart"></i>
+            <span>Orders</span>
+        </a>
+    </li>
 
 
 </ul>
