@@ -24,25 +24,30 @@
                 <p  class="mt-3">Description: {{ $product->description }}</p>
 
                 <div class="btn_main">
-                    @if(auth()->check())
-                        <form action="{{ route('cart.add', $product->id) }}" method="POST">
-                            @csrf
-                            <div class="d-flex align-items-center mt-3">
-                                <input type="number" min="1" value="1" class="form-control w-25 me-2">
-                                <button class="btn btn-success btn-lg">
-                                    <i class="bi bi-cart"></i> Add to Cart
-                                </button>
-                            </div>
-                        </form>
+                    @if($product->quantity <= 0)
+                        <!-- If product is out of stock -->
+                        <button class="btn btn-secondary btn-lg" disabled>
+                            <i class="bi bi-x-circle"></i> Out of Stock
+                        </button>
                     @else
-                        <a href="{{ route('login') }}" class="btn btn-warning">Login to Buy</a>
+                        <!-- Product is in stock -->
+                        @if(auth()->check())
+                            <form action="{{ route('cart.add', $product->id) }}" method="POST">
+                                @csrf
+                                <div class="d-flex align-items-center mt-3">
+                                    <input type="number" name="quantity" min="1" value="1" max="{{ $product->quantity }}" class="form-control w-25 me-2">
+                                    <button type="submit" class="btn btn-success btn-lg">
+                                        <i class="bi bi-cart"></i> Add to Cart
+                                    </button>
+                                </div>
+                            </form>
+                        @else
+                            <a href="{{ route('login') }}" class="btn btn-warning">Login to Buy</a>
+                        @endif
                     @endif
                 </div>
 
-
-
             </div>
-        </div>
 
         <a href="{{ route('home') }}" class="btn btn-primary mt-4">
             Back
