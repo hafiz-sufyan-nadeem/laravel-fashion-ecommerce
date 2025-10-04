@@ -178,20 +178,25 @@
                                                   </div>
 
                                                   <div class="btn_main">
-                                                      @if(auth()->check())
-                                                      <form action="{{ route('cart.add', $product->id) }}" method="POST">
-                                                          @csrf
-                                                      <div class="buy_bt">
-                                                          <button type="submit" class="btn btn-primary">Buy Now</button>
-                                                      </div>
-                                                      </form>
+                                                      @if($product->quantity <= 0)
+                                                          <button class="btn btn-secondary" disabled>Out of Stock</button>
                                                       @else
-                                                          <a href="{{ route('login') }}" class="btn btn-warning">Login to Buy</a>
+                                                          @if(auth()->check())
+                                                              <form action="{{ route('cart.add', $product->id) }}" method="POST">
+                                                                  @csrf
+                                                                  <div class="buy_bt">
+                                                                      <button type="submit" class="btn btn-primary">Buy Now</button>
+                                                                  </div>
+                                                              </form>
+                                                          @else
+                                                              <a href="{{ route('login') }}" class="btn btn-warning">Login to Buy</a>
+                                                          @endif
                                                       @endif
 
-                                                          <div class="seemore_bt"><a href="{{route('products.show', ['id' => $product->id])}}">See More</a></div>
+                                                      <div class="seemore_bt">
+                                                          <a href="{{ route('products.show', ['id' => $product->id]) }}">See More</a>
+                                                      </div>
                                                   </div>
-
 
                                               </div>
                                           </div>
@@ -246,21 +251,28 @@
                                                       <img src="{{ asset('storage/'.$product->image) }}">
                                                   </div>
                                                   <div class="btn_main">
-                                                      @if(auth()->check())
-                                                          <form action="{{ route('cart.add', $product->id) }}" method="POST">
-                                                              @csrf
-                                                              <div class="buy_bt">
-                                                                  <button type="submit" class="btn btn-primary">Buy Now</button>
-                                                              </div>
-                                                          </form>
+                                                      @if($product->quantity <= 0)
+                                                          <button class="btn btn-secondary" disabled>Out of Stock</button>
                                                       @else
-                                                          <a href="{{ route('login') }}" class="btn btn-warning">Login to Buy</a>
+                                                          @if(auth()->check())
+                                                              <form action="{{ route('cart.add', $product->id) }}" method="POST">
+                                                                  @csrf
+                                                                  <div class="buy_bt">
+                                                                      <button type="submit" class="btn btn-primary">Buy Now</button>
+                                                                  </div>
+                                                              </form>
+                                                          @else
+                                                              <a href="{{ route('login') }}" class="btn btn-warning">Login to Buy</a>
+                                                          @endif
                                                       @endif
 
-                                                      <div class="seemore_bt"><a href="{{route('products.show', ['id' => $product->id])}}">See More</a></div>
+                                                      <div class="seemore_bt">
+                                                          <a href="{{ route('products.show', ['id' => $product->id]) }}">See More</a>
+                                                      </div>
                                                   </div>
                                               </div>
-                                          </div>
+
+                                              </div>
                                       @endforeach
                                   </div>
                               </div>
@@ -308,19 +320,26 @@
                                                       <img src="{{ asset('storage/'.$product->image) }}">
                                                   </div>
                                                   <div class="btn_main">
-                                                      @if(auth()->check())
-                                                          <form action="{{ route('cart.add', $product->id) }}" method="POST">
-                                                              @csrf
-                                                              <div class="buy_bt">
-                                                                  <button type="submit" class="btn btn-primary">Buy Now</button>
-                                                              </div>
-                                                          </form>
+                                                      @if($product->quantity <= 0)
+                                                          <button class="btn btn-secondary" disabled>Out of Stock</button>
                                                       @else
-                                                          <a href="{{ route('login') }}" class="btn btn-warning">Login to Buy</a>
+                                                          @if(auth()->check())
+                                                              <form action="{{ route('cart.add', $product->id) }}" method="POST">
+                                                                  @csrf
+                                                                  <div class="buy_bt">
+                                                                      <button type="submit" class="btn btn-primary">Buy Now</button>
+                                                                  </div>
+                                                              </form>
+                                                          @else
+                                                              <a href="{{ route('login') }}" class="btn btn-warning">Login to Buy</a>
+                                                          @endif
                                                       @endif
 
-                                                      <div class="seemore_bt"><a href="{{route('products.show', ['id' => $product->id])}}">See More</a></div>
+                                                      <div class="seemore_bt">
+                                                          <a href="{{ route('products.show', ['id' => $product->id]) }}">See More</a>
+                                                      </div>
                                                   </div>
+
                                               </div>
                                           </div>
                                       @endforeach
