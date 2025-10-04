@@ -54,6 +54,6 @@ Route::delete('/cart/delete/{id}', [CartController::class, 'delete'])->name('car
 Route::get('/checkout', [CartController::class, 'checkoutForm'])->middleware('auth')->name('checkout.form');
 Route::post('/checkout/store', [CartController::class, 'checkout'])->middleware('auth')->name('checkout.store');
 
-// Orderss
+// Orders
 Route::get('/orders/{order}', [OrderController::class, 'showOrders'])->middleware('auth')->name('orders.show');
 Route::get('/my-orders', [OrderController::class, 'myOrders'])->middleware('auth')->name('my.orders');

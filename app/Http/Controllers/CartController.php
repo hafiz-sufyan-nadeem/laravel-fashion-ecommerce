@@ -12,11 +12,15 @@ class CartController extends Controller
     public function addToCart($id)
     {
         $product = Product::findOrFail($id);
+        if($product->stock == 0 || $product->quantity <= 0){
+            return back()->with('error', "Sorry, this product is out of stock!");
+        }
         $cartItem = CartItem::where('user_id', auth()->id())->where('product_id', $id)->first();
 
         if ($cartItem) {
             $cartItem->quantity += 1;
             $cartItem->save();
+            $product->quantity -= 1;
         }else{
             CartItem::create([
                 'user_id' => auth()->id(),
@@ -24,6 +28,11 @@ class CartController extends Controller
                 'quantity' => 1,
                 'price' => $product->price,
             ]);
+            $product->quantity -= 1;
+            if ($product->quantity <= 0){
+                $product->stock = 0;
+            }
+            $product->save();
         }
         return back()->with('success', 'Product added to cart successfully!');
     }
