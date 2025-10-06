@@ -67,7 +67,7 @@
                           </button>
                           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                               <a class="dropdown-item" href="{{route('home')}}#fashion">Fashion</a>
-                              <a class="dropdown-item" href="{{route('home')}}#electronic">Electronics</a>
+                              <a class="dropdown-item" href="{{route('home')}}#electronics">Electronics</a>
                               <a class="dropdown-item" href="{{route('home')}}#jewellery">Jewellery</a>
                           </div>
                       </div>
