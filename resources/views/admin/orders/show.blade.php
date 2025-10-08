@@ -11,7 +11,7 @@
             <p><strong>Customer:</strong> {{ $order->user->name ?? 'Guest' }}</p>
             <p><strong>Email:</strong> {{ $order->email }}</p>
             <p><strong>Address:</strong> {{ $order->address }}, {{ $order->city }}</p>
-            <p><strong>Total:</strong> ${{ number_format($order->total_amount, 2) }}</p>
+            <p><strong>Total:</strong> PKR {{ number_format($order->total_amount, 2) }}</p>
             <p><strong>Status:</strong>
                 <span class="status-badge status-{{ $order->status }}">
                 {{ ucfirst($order->status) }}
