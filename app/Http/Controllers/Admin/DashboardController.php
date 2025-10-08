@@ -13,11 +13,11 @@ class DashboardController extends Controller
         $currentYear = now()->year;
 
 //        ONLY DELIVERED ORDERS COUNT.
-        $earningMonthly = Order::whereMonth('created_at', $currentMonth)
+        $earningsMonthly = Order::whereMonth('created_at', $currentMonth)
             ->whereYear('created_at', $currentYear)
             ->where('status', 'delivered')
             ->sum('total_amount');
 
-        return view('admin.layouts.dashboard');
+        return view('admin.layouts.dashboard', compact('currentMonth', 'currentYear', 'earningsMonthly'));
     }
 }
