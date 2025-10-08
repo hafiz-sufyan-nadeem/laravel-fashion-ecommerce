@@ -38,7 +38,7 @@
                         <td>{{ $item->product->name }}</td>
                         <td>{{ $item->quantity }}</td>
                         <td>PKR {{ number_format($item->price, 2) }}</td>
-                        <td>${{ number_format($item->subtotal, 2) }}</td>
+                        <td>PKR {{ number_format($item->subtotal, 2) }}</td>
                     </tr>
                 @endforeach
                 </tbody>
