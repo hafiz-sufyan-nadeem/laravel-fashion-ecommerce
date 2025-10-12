@@ -18,6 +18,9 @@ class DashboardController extends Controller
             ->where('status', 'delivered')
             ->sum('total_amount');
 
-        return view('admin.layouts.dashboard', compact('currentMonth', 'currentYear', 'earningsMonthly'));
+//        TOTAL SALES COUNT
+        $totalSales = Order::where('status', 'delivered')->count();
+
+        return view('admin.layouts.dashboard', compact( 'earningsMonthly', 'totalSales'));
     }
 }
