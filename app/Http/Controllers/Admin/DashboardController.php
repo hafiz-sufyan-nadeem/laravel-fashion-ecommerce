@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Order;
+use App\Models\User;
 
 class DashboardController extends Controller
 {
@@ -21,6 +22,9 @@ class DashboardController extends Controller
 //        TOTAL SALES COUNT
         $totalSales = Order::where('status', 'delivered')->count();
 
-        return view('admin.layouts.dashboard', compact( 'earningsMonthly', 'totalSales'));
+//        TOTAL CUSTOMERS
+        $totalCustomers = User::count();
+
+        return view('admin.layouts.dashboard', compact( 'earningsMonthly', 'totalSales', 'totalCustomers'));
     }
 }
