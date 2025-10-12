@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
@@ -28,11 +29,21 @@ class DashboardController extends Controller
 //        TOTAL PENDING ORDERS
         $pendingOrders= Order::where('status', 'pending')->count();
 
+//        SHOW TOTAL SALES DATA IN GRAPH
+        $monthlySalesData = Order::query()->select(
+            DB::raw('Month(created_at) AS month'),
+            DB::raw('SUM(total_amount) AS total_amount')
+        )
+            ->where('status', 'delivered')
+            ->groupBy(DB::raw('Month(created_at)'))
+            ->get();
+
         return view('admin.layouts.dashboard', compact(
             'earningsMonthly',
             'totalSales',
             'totalCustomers',
-            'pendingOrders'
+            'pendingOrders',
+            'monthlySalesData',
         ));
     }
 }

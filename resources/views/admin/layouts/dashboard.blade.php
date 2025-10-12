@@ -91,7 +91,7 @@
             </div>
         </div>
 
-        <!-- Area Chart -->
+{{--        <!-- Area Chart -->--}}
 {{--        <div class="col-xl-8 col-lg-7">--}}
 {{--            <div class="card mb-4">--}}
 {{--                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">--}}
@@ -118,7 +118,7 @@
 {{--                </div>--}}
 {{--            </div>--}}
 {{--        </div>--}}
-        <!-- Pie Chart -->
+{{--        <!-- Pie Chart -->--}}
 {{--        <div class="col-xl-4 col-lg-5">--}}
 {{--            <div class="card mb-4">--}}
 {{--                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">--}}
