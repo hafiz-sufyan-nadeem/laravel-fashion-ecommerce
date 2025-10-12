@@ -91,34 +91,49 @@
             </div>
         </div>
 
-{{--        <!-- Area Chart -->--}}
-{{--        <div class="col-xl-8 col-lg-7">--}}
-{{--            <div class="card mb-4">--}}
-{{--                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">--}}
-{{--                    <h6 class="m-0 font-weight-bold text-primary">Monthly Recap Report</h6>--}}
-{{--                    <div class="dropdown no-arrow">--}}
-{{--                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"--}}
-{{--                           aria-haspopup="true" aria-expanded="false">--}}
-{{--                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>--}}
-{{--                        </a>--}}
-{{--                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"--}}
-{{--                             aria-labelledby="dropdownMenuLink">--}}
-{{--                            <div class="dropdown-header">Dropdown Header:</div>--}}
-{{--                            <a class="dropdown-item" href="#">Action</a>--}}
-{{--                            <a class="dropdown-item" href="#">Another action</a>--}}
-{{--                            <div class="dropdown-divider"></div>--}}
-{{--                            <a class="dropdown-item" href="#">Something else here</a>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--                <div class="card-body">--}}
-{{--                    <div class="chart-area">--}}
-{{--                        <canvas id="myAreaChart"></canvas>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--        <!-- Pie Chart -->--}}
+        <!-- Area Chart -->
+        <div class="col-xl-8 col-lg-7">
+            <div class="card mb-4">
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-primary">Monthly Recap Report</h6>
+                    <div class="dropdown no-arrow">
+                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                             aria-labelledby="dropdownMenuLink">
+                            <div class="dropdown-header">Dropdown Header:</div>
+                            <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="chart-area">
+                        <canvas id="myAreaChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-4 col-lg-5">
+            <div class="card mb-4">
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-primary">Monthly Orders</h6>
+                </div>
+                <div class="card-body">
+                    <div class="chart-bar">
+                        <canvas id="myBarChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        {{--        <!-- Pie Chart -->--}}
 {{--        <div class="col-xl-4 col-lg-5">--}}
 {{--            <div class="card mb-4">--}}
 {{--                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">--}}
@@ -328,4 +343,54 @@
     </div>
 
 </div>
+@endsection
+
+    @section('scripts')
+        <script>
+            // ---- Sales Chart ----
+            let monthlySales = @json($monthlySalesData);
+            let labels = monthlySales.map(item => 'Month ' + item.month);
+            let data = monthlySales.map(item => item.total_amount);
+
+            const ctx1 = document.getElementById('myAreaChart').getContext('2d');
+            new Chart(ctx1, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Monthly Earnings',
+                        data: data,
+                        borderColor: '#4e73df',
+                        backgroundColor: 'rgba(78, 115, 223, 0.1)',
+                        tension: 0.4,
+                        fill: true,
+                    }]
+                }
+            });
+
+            // ---- Orders Chart ----
+            let monthlyOrders = @json($monthlyOrdersData);
+            let orderLabels = monthlyOrders.map(item => 'Month ' + item.month);
+            let orderData = monthlyOrders.map(item => item.total_orders);
+
+            const ctx2 = document.getElementById('myBarChart').getContext('2d');
+            new Chart(ctx2, {
+                type: 'bar',
+                data: {
+                    labels: orderLabels,
+                    datasets: [{
+                        label: 'Orders',
+                        data: orderData,
+                        backgroundColor: 'rgba(28, 200, 138, 0.7)',
+                        borderColor: 'rgba(28, 200, 138, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: { beginAtZero: true }
+                    }
+                }
+            });
+        </script>
 @endsection

@@ -38,12 +38,23 @@ class DashboardController extends Controller
             ->groupBy(DB::raw('Month(created_at)'))
             ->get();
 
+//        MONTHLY ORDERS CHART
+        $monthlyOrdersData = Order::query()
+            ->select(
+                DB::raw('MONTH(created_at) as month'),
+                DB::raw('COUNT(id) as total_orders')
+            )
+            ->groupBy(DB::raw('MONTH(created_at)'))
+            ->get();
+
+
         return view('admin.layouts.dashboard', compact(
             'earningsMonthly',
             'totalSales',
             'totalCustomers',
             'pendingOrders',
             'monthlySalesData',
+            'monthlyOrdersData',
         ));
     }
 }
