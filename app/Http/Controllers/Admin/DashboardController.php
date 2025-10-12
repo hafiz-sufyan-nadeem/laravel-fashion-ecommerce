@@ -25,6 +25,14 @@ class DashboardController extends Controller
 //        TOTAL CUSTOMERS
         $totalCustomers = User::count();
 
-        return view('admin.layouts.dashboard', compact( 'earningsMonthly', 'totalSales', 'totalCustomers'));
+//        TOTAL PENDING ORDERS
+        $pendingOrders= Order::where('status', 'pending')->count();
+
+        return view('admin.layouts.dashboard', compact(
+            'earningsMonthly',
+            'totalSales',
+            'totalCustomers',
+            'pendingOrders'
+        ));
     }
 }

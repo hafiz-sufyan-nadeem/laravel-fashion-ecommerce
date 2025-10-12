@@ -19,7 +19,7 @@
                             <div class="text-xs font-weight-bold text-uppercase mb-1">Earnings (Monthly)</div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">{{ number_format($earningsMonthly, 2) }}</div>
                             <div class="mt-2 mb-0 text-muted text-xs">
-                                <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
+                                <span class="text-success mr-2"><i class="fa fa-arrow-up"></i></span>
                                 <span>Since last month</span>
                             </div>
                         </div>
@@ -76,8 +76,8 @@
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-uppercase mb-1">Pending Requests</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+                            <div class="text-xs font-weight-bold text-uppercase mb-1">Total Pending Requests</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $totalRequests }}</div>
                             <div class="mt-2 mb-0 text-muted text-xs">
                                 <span class="text-danger mr-2"><i class="fas fa-arrow-down"></i> 1.10%</span>
                                 <span>Since yesterday</span>
