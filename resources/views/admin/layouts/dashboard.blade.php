@@ -74,17 +74,17 @@
         <div class="col-xl-3 col-md-6 mb-4">
             <div class="card h-100">
                 <div class="card-body">
-                    <div class="row no-gutters align-items-center">
+                    <div class="row align-items-center">
                         <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-uppercase mb-1">Total Pending Requests</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $totalRequests }}</div>
+                            <div class="text-xs font-weight-bold text-uppercase mb-1">Pending Orders</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $pendingOrders }}</div>
                             <div class="mt-2 mb-0 text-muted text-xs">
-                                <span class="text-danger mr-2"><i class="fas fa-arrow-down"></i> 1.10%</span>
-                                <span>Since yesterday</span>
+                                <span class="text-warning mr-2"><i class="fa fa-clock"></i></span>
+                                <span>Waiting for confirmation</span>
                             </div>
                         </div>
                         <div class="col-auto">
-                            <i class="fas fa-comments fa-2x text-warning"></i>
+                            <i class="fas fa-hourglass-half fa-2x text-warning"></i>
                         </div>
                     </div>
                 </div>
