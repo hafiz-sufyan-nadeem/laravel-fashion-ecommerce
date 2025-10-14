@@ -30,7 +30,7 @@ class DashboardController extends Controller
         $pendingOrders= Order::where('status', 'pending')->count();
 
 //        SHOW TOTAL SALES DATA IN GRAPH
-        $monthlySalesData = Order::query()->selgect(
+        $monthlySalesData = Order::query()->select(
             DB::raw('Month(created_at) AS month'),
             DB::raw('SUM(total_amount) AS total_amount')
         )
