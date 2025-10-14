@@ -20,7 +20,7 @@ class DashboardController extends Controller
             ->where('status', 'delivered')
             ->sum('total_amount');
 
-//        TOTAL SALES COUNT
+//        TOTAL SALES COUNTS
         $totalSales = Order::where('status', 'delivered')->count();
 
 //        TOTAL CUSTOMERS
