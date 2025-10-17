@@ -107,12 +107,10 @@
             </div>
         </li>
 
-        <form action="#" method="POST">
-            @csrf
-            <button class="btn btn-danger dropdown-item" data-toggle="modal" data-target="#logoutModal" style="margin-top: 15px;">
-                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i> Logout
-            </button>
-        </form>
+        <!-- Ye button modal open karega -->
+        <button class="btn btn-danger dropdown-item" data-toggle="modal" data-target="#logoutModal" style="margin-top: 15px;">
+            <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i> Logout
+        </button>
 
 
         <div class="topbar-divider d-none d-sm-block"></div>
