@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
 use Illuminate\Http\Request;
 use App\Models\User;
 
@@ -17,5 +18,13 @@ class AdminCustomerController extends Controller
             ->paginate(5);
 
         return view('admin.customers.index', compact('customers', 'search'));
+    }
+
+    public function show($id)
+    {
+        $user = User::findOrFail($id);
+        $orders = Order::where('user_id',$id)->with('orderItems.product')->get();
+
+        return view('admin.customers.show', compact('user', 'orders'));
     }
 }
