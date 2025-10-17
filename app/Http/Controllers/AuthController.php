@@ -38,7 +38,7 @@ class AuthController extends Controller
         $user->save();
 
         Auth::login($user);
-        return redirect('fronternd.layouts.home')->with('success', 'Registration Successful');
+        return redirect()->route('home')->with('success', 'Registration Successful');
     }
 
     public function logout(Request $request)

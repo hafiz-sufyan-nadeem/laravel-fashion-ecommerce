@@ -40,9 +40,9 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 
 // ================== FRONTEND ROUTES ==================
-Route::get('/home', function () {
-    return view('frontend.layouts.home');
-})->name('home');
+//Route::get('/home', function () {
+//    return view('frontend.layouts.home');
+//})->name('home');
 
 Route::get('/', [HomeController::class, 'home'])->name('home');
 
