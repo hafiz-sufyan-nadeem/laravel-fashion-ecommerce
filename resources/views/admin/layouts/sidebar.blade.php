@@ -33,5 +33,11 @@
         </a>
     </li>
 
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('admin.customers.index') }}">
+            <i class="fas fa-shopping-cart"></i>
+            <span>Customers</span>
+        </a>
+    </li>
 
 </ul>
