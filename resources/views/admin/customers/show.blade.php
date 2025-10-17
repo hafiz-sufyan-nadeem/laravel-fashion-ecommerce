@@ -53,7 +53,6 @@
                     </table>
                     <div class="mt-3">
                         {{ $orders->links('pagination::bootstrap-4') }}
-
                     </div>
                 @endif
             </div>
