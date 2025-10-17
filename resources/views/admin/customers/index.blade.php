@@ -20,6 +20,7 @@
                         <th>ID</th>
                         <th>Name</th>
                         <th>Email</th>
+                        <th>Action</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -28,13 +29,15 @@
                             <td>{{ $customer->id }}</td>
                             <td>{{ $customer->name }}</td>
                             <td>{{ $customer->email }}</td>
+                            <td><a href="{{ route('admin.customers.show', $customer->id) }}">View</a></td>
                         </tr>
                     @endforeach
                     </tbody>
                 </table>
 
                 <div class="mt-3">
-                    {{ $customers->links() }}
+                    {{ $customers->links('pagination::bootstrap-4') }}
+
                 </div>
 
             </div>

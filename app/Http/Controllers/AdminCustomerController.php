@@ -23,7 +23,9 @@ class AdminCustomerController extends Controller
     public function show($id)
     {
         $user = User::findOrFail($id);
-        $orders = Order::where('user_id',$id)->with('orderItems.product')->get();
+        $orders = Order::where('user_id',$id)->with('orderItems.product')
+            ->orderBy('created_at','desc')
+            ->paginate(5);
 
         return view('admin.customers.show', compact('user', 'orders'));
     }
