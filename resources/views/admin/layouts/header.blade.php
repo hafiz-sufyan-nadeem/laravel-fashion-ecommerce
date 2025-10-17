@@ -107,10 +107,11 @@
             </div>
         </li>
 
-        <!-- Ye button modal open karega -->
+        <!-- ================= LOGOUT BUTTON ================= -->
         <button class="btn btn-danger dropdown-item" data-toggle="modal" data-target="#logoutModal" style="margin-top: 15px;">
             <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i> Logout
         </button>
+
 
 
         <div class="topbar-divider d-none d-sm-block"></div>
@@ -137,3 +138,32 @@
         </li>
     </ul>
 </nav>
+
+<!-- ================= LOGOUT CONFIRMATION MODAL ================= -->
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="logoutModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title" id="logoutModalLabel">Ready to Leave?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                Select <strong>"Logout"</strong> below if you are ready to end your current session.
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                <form action="{{ route('logout') }}" method="POST" class="d-inline">
+                    @csrf
+                    <button type="submit" class="btn btn-danger">Logout</button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
