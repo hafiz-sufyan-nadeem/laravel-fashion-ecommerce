@@ -9,6 +9,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\AdminOrderController;
+use App\Http\Controllers\AdminCustomerController;
 
 // ================== ADMIN ROUTES ==================
 Route::middleware([AdminMiddleware::class])->prefix('admin')->name('admin.')->group(function () {
@@ -18,8 +19,6 @@ Route::middleware([AdminMiddleware::class])->prefix('admin')->name('admin.')->gr
     Route::get('/orders', [AdminOrderController::class, 'index'])->name('orders.index');
     Route::get('/orders/{order}', [AdminOrderController::class, 'show'])->name('orders.show');
     Route::post('orders/{order}/update-status', [AdminOrderController::class, 'updateStatus'])->name('orders.updateStatus');
-
-    Route::get('/customers', [AdminCustomerController::class, 'index'])->name('admin.customers.index');
 });
 
 
@@ -59,3 +58,5 @@ Route::post('/checkout/store', [CartController::class, 'checkout'])->middleware(
 // Orders
 Route::get('/orders/{order}', [OrderController::class, 'showOrders'])->middleware('auth')->name('orders.show');
 Route::get('/my-orders', [OrderController::class, 'myOrders'])->middleware('auth')->name('my.orders');
+
+Route::get('/admin/customers', [AdminCustomerController::class, 'index'])->name('admin.customers.index');
