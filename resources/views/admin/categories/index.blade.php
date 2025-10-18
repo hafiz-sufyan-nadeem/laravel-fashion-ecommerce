@@ -15,7 +15,6 @@
             <tr>
                 <th>ID</th>
                 <th>Name</th>
-                <th>Slug</th>
                 <th>Products</th>
                 <th>Action</th>
             </tr>
@@ -25,7 +24,6 @@
                 <tr>
                     <td>{{ $category->id }}</td>
                     <td>{{ $category->name }}</td>
-                    <td>{{ $category->slug }}</td>
                     <td>{{ $category->products()->count() }}</td>
                     <td>
                         <a href="{{ route('admin.categories.edit', $category->id) }}" class="btn btn-sm btn-warning">Edit</a>
