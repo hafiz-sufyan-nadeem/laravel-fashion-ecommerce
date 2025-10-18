@@ -28,6 +28,7 @@ class ProductUpdateRequest extends FormRequest
             'image' => 'nullable',
             'stock' => 'nullable',
             'quantity' => 'nullable',
+            'category_id' => 'required|exists:categories,id',
         ];
     }
 }

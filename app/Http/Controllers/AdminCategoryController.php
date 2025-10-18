@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class AdminCategoryController extends Controller
 {
@@ -12,7 +13,8 @@ class AdminCategoryController extends Controller
      */
     public function index()
     {
-        //
+        $categories = Category::orderBy('id','asc')->paginate(10);
+        return view('admin.categories.index', compact('categories'));
     }
 
     /**
@@ -20,7 +22,8 @@ class AdminCategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.categories.create');
+
     }
 
     /**
@@ -28,7 +31,14 @@ class AdminCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            'name' => 'required|string|max:255|unique:categories,name',
+        ]);
+
+        $data['slug'] = Str::slug($data['name']);
+        Category::create($data);
+
+        return redirect()->route('admin.categories.index')->with('success','Category added.');
     }
 
     /**
@@ -36,7 +46,8 @@ class AdminCategoryController extends Controller
      */
     public function show(Category $category)
     {
-        //
+        return view('admin.categories.show', compact('category'));
+
     }
 
     /**
@@ -44,7 +55,8 @@ class AdminCategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        return view('admin.categories.edit', compact('category'));
+
     }
 
     /**
@@ -52,7 +64,14 @@ class AdminCategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+        $data = $request->validate([
+            'name' => 'required|string|max:255|unique:categories,name,'.$category->id,
+        ]);
+
+        $data['slug'] = Str::slug($data['name']);
+        $category->update($data);
+
+        return redirect()->route('admin.categories.index')->with('success','Category updated.');
     }
 
     /**
@@ -60,6 +79,8 @@ class AdminCategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        // agar products linked hain to pehle handle karna chahoge — ya force delete ya reassign
+        $category->delete();
+        return redirect()->route('admin.categories.index')->with('success','Category deleted.');
     }
 }

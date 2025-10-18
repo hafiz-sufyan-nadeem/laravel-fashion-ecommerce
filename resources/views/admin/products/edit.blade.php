@@ -30,6 +30,19 @@
                 </div>
 
                 <div class="mb-3">
+                    <label for="category" class="form-label"><strong>Category:</strong></label>
+                    <select name="category_id" id="category" class="form-control @error('category_id') is-invalid @enderror">
+                        <option value="">-- Select Category --</option>
+                        @foreach ($categories as $category)
+                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                        @endforeach
+                    </select>
+                    @error('category_id')
+                    <div class="form-text text-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <div class="mb-3">
                     <label for="inputDetail" class="form-label"><strong>Price:</strong></label>
                     <input
                         type="number"
