@@ -24,8 +24,35 @@ class MessageController extends Controller
             'is_admin' => 1,
             'subject' => $request->subject,
             'message' => $request->message,
+            'is_read' => false,
         ]);
 
-        return redirect()->back()->with('success', 'Message sent successfully');
+        return redirect()->route('contact.admin')->with('success', 'Message sent successfully');
     }
+
+    public function index()
+    {
+        $messages = Message::with('user')->latest()->paginate(10);
+        return view('admin.messages.index', compact('messages'));
+    }
+
+    public function show($id)
+    {
+        $message = Message::with('user')->findOrFail($id);
+        $message->update(['is_read' => true]);
+        return view('admin.messages.show', compact('message'));
+    }
+
+    public function reply(Request $request, $id)
+    {
+        $request->validate(['reply' => 'required|string']);
+
+        $message = Message::findOrFail($id);
+        $message->reply = $request->reply;
+        $message->save();
+
+        // future me yahan email ya notification ka code ayega
+        return redirect()->route('admin.messages')->with('success', 'Reply sent to user.');
+    }
+
 }

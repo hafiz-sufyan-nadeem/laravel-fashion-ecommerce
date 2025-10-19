@@ -26,6 +26,11 @@ Route::middleware([AdminMiddleware::class])->prefix('admin')->name('admin.')->gr
 
     Route::resource('categories', \App\Http\Controllers\AdminCategoryController::class);
 
+
+    Route::get('/messages', [MessageController::class, 'index'])->name('messages');
+    Route::get('/messages', [MessageController::class, 'index'])->name('messages');
+    Route::get('/messages/{id}', [MessageController::class, 'show'])->name('messages.show');
+    Route::post('/messages/{id}/reply', [MessageController::class, 'reply'])->name('messages.reply');
 });
 
 

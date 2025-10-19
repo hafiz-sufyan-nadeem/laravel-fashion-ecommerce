@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use App\Models\User;
 
 class Message extends Model
 {
@@ -17,14 +18,14 @@ class Message extends Model
         'is_read',
     ];
 
-    public function sentMessages()
+    public function user()
     {
-        return $this->hasMany(Message::class, 'user_id');
+        return $this->belongsTo(Message::class, 'user_id');
     }
 
-    public function receivedMessages()
+    public function admin()
     {
-        return $this->hasMany(Message::class, 'admin_id');
+        return $this->belongsTo(Message::class, 'admin_id');
     }
 
 }
