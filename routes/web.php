@@ -10,6 +10,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\AdminOrderController;
 use App\Http\Controllers\AdminCustomerController;
+use App\Http\Controllers\MessageController;
 
 // ================== ADMIN ROUTES ==================
 Route::middleware([AdminMiddleware::class])->prefix('admin')->name('admin.')->group(function () {
@@ -64,3 +65,8 @@ Route::post('/checkout/store', [CartController::class, 'checkout'])->middleware(
 // Orders
 Route::get('/orders/{order}', [OrderController::class, 'showOrders'])->middleware('auth')->name('orders.show');
 Route::get('/my-orders', [OrderController::class, 'myOrders'])->middleware('auth')->name('my.orders');
+
+
+// Contact form/MSG's
+Route::get('/contact-admin', [App\Http\Controllers\MessageController::class, 'create'])->name('contact.admin');
+Route::post('/contact-admin/store', [App\Http\Controllers\MessageController::class, 'store'])->name('contact.admin.store');
