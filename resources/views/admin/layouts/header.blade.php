@@ -38,9 +38,12 @@
 
                 @forelse($recentMessages as $message)
                     <a class="dropdown-item d-flex align-items-center" href="{{ route('admin.messages.show', $message->id) }}">
-{{--                        <div class="dropdown-list-image mr-3">--}}
-{{--                            <img class="rounded-circle" src="{{ asset('img/user.png') }}" style="max-width: 60px" alt="">--}}
-{{--                        </div>--}}
+
+                        <div class="rounded-circle bg-primary text-white d-flex justify-content-center align-items-center mr-2"
+                             style="width: 50px; height: 50px; font-weight: bold;">
+                            <i class="fas fa-user"></i>
+                        </div>
+
                         <div class="{{ $message->is_read ? '' : 'font-weight-bold' }}">
                             <div class="text-truncate">{{ Str::limit($message->message, 60) }}</div>
                             <div class="small text-gray-500">
