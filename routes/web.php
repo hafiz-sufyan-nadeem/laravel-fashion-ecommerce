@@ -31,6 +31,9 @@ Route::middleware([AdminMiddleware::class])->prefix('admin')->name('admin.')->gr
     Route::get('/messages', [MessageController::class, 'index'])->name('messages');
     Route::get('/messages/{id}', [MessageController::class, 'show'])->name('messages.show');
     Route::post('/messages/{id}/reply', [MessageController::class, 'reply'])->name('messages.reply');
+
+    Route::post('/messages/{id}/reply', [MessageController::class, 'reply'])->name('messages.reply');
+
 });
 
 
@@ -75,3 +78,6 @@ Route::get('/my-orders', [OrderController::class, 'myOrders'])->middleware('auth
 // Contact form/MSG's
 Route::get('/contact-admin', [App\Http\Controllers\MessageController::class, 'create'])->name('contact.admin');
 Route::post('/contact-admin/store', [App\Http\Controllers\MessageController::class, 'store'])->name('contact.admin.store');
+
+
+

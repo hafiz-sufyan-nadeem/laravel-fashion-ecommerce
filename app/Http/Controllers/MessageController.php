@@ -43,16 +43,24 @@ class MessageController extends Controller
         return view('admin.messages.show', compact('message'));
     }
 
+
     public function reply(Request $request, $id)
     {
         $request->validate(['reply' => 'required|string']);
 
         $message = Message::findOrFail($id);
-        $message->reply = $request->reply;
-        $message->save();
 
-        // future me yahan email ya notification ka code ayega
-        return redirect()->route('admin.messages')->with('success', 'Reply sent to user.');
+        Message::create([
+            'user_id' => $message->user_id,
+            'admin_id' => auth()->id(),
+            'message' => $request->input('reply'),
+            'parent_id' => $id,
+            'is_read' => 0,
+        ]);
+
+        return redirect()->back()->with('success', 'Reply sent successfully!');
     }
+
+
 
 }

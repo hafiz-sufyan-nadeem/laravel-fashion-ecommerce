@@ -8,6 +8,11 @@
 
         <hr>
         <h4>Reply to User</h4>
+        @if(session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
         <form action="{{ route('admin.messages.reply', $message->id) }}" method="POST">
             @csrf
             <textarea name="reply" rows="5" class="form-control" placeholder="Write your reply..." required></textarea>

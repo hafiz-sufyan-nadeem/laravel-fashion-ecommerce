@@ -16,6 +16,7 @@ class Message extends Model
         'subject',
         'message',
         'is_read',
+        'parent_id',
     ];
 
     public function user()
@@ -26,6 +27,16 @@ class Message extends Model
     public function admin()
     {
         return $this->belongsTo(User::class, 'admin_id');
+    }
+
+    public function parent()
+    {
+        return $this->belongsTo(Message::class, 'parent_id');
+    }
+
+    public function replies()
+    {
+        return $this->hasMany(Message::class, 'parent_id');
     }
 
 }
