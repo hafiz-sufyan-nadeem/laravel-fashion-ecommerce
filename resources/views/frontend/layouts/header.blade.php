@@ -8,10 +8,13 @@
             <li><a href="#" class="text-white text-decoration-none">Gift Ideas</a></li>
             <li><a href="#" class="text-white text-decoration-none">New Releases</a></li>
             <li><a href="#" class="text-white text-decoration-none">Today's Deals</a></li>
+            @auth()
             <li><a href="{{ route('contact.admin') }}" class="fw-bold text-white text-decoration-none">Message Admin</a></li>
+            @endauth
         </ul>
 
         {{-- Chat Icon Dropdown --}}
+        @auth()
         <div class="dropdown">
             <button class="btn btn-dark border-0 position-relative" type="button" id="messagesDropdown"
                     data-bs-toggle="dropdown" aria-expanded="false">
@@ -41,6 +44,7 @@
                 @endforelse
             </ul>
         </div>
+        @endauth
     </div>
 </div>
 
