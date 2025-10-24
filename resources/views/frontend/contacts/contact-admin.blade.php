@@ -76,6 +76,8 @@
     }
 </style>
 
+
+
 <div class="message-box">
     <h2>Message Admin</h2>
 
@@ -100,4 +102,5 @@
 
         <button type="submit" class="btn-send">Send Message</button>
     </form>
+
 </div>

@@ -22,12 +22,12 @@ class AppServiceProvider extends ServiceProvider
 
         // ✅ Admin header messages
         View::composer('admin.layouts.header', function ($view) {
-            $messages = Message::with('user')
+            $recentMessages = Message::with('user')
                 ->latest()
                 ->take(5)
                 ->get();
 
-            $view->with(compact('messages'));
+            $view->with('recentMessages', $recentMessages);
         });
 
         // ✅ Frontend header (for user replies)
