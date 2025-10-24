@@ -36,6 +36,8 @@
       <link rel="stylesheet" href="{{asset('frontend/css/owl.carousel.min.css')}}">
       <link rel="stylesoeet" href="{{asset('frontend/css/owl.theme.default.min.css')}}">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
+       <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
    </head>
    <body>
       <!-- banner bg main start -->
@@ -376,6 +378,9 @@
       <!-- sidebar -->
       <script src="{{asset('frontend/js/jquery.mCustomScrollbar.concat.min.js')}}"></script>
       <script src="{{asset('frontend/js/custom.js')}}"></script>
+
+
+
       <script>
          function openNav() {
            document.getElementById("mySidenav").style.width = "250px";
@@ -386,14 +391,14 @@
          }
       </script>
 
-      <script>
-          document.addEventListener('DOMContentLoaded', () => {
-              const cartNav = document.querySelector('.cart-nav');
-              const dropdown = cartNav.querySelector('.cart-dropdown');
-              cartNav.addEventListener('mouseenter', () => dropdown.style.display = 'block');
-              cartNav.addEventListener('mouseleave', () => dropdown.style.display = 'none');
-          });
-      </script>
+{{--      <script>--}}
+{{--          document.addEventListener('DOMContentLoaded', () => {--}}
+{{--              const cartNav = document.querySelector('.cart-nav');--}}
+{{--              const dropdown = cartNav.querySelector('.cart-dropdown');--}}
+{{--              cartNav.addEventListener('mouseenter', () => dropdown.style.display = 'block');--}}
+{{--              cartNav.addEventListener('mouseleave', () => dropdown.style.display = 'none');--}}
+{{--          });--}}
+{{--      </script>--}}
 
       <script>
           document.addEventListener('DOMContentLoaded', function() {

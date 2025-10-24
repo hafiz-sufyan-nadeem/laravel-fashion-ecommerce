@@ -80,4 +80,8 @@ Route::get('/contact-admin', [App\Http\Controllers\MessageController::class, 'cr
 Route::post('/contact-admin/store', [App\Http\Controllers\MessageController::class, 'store'])->name('contact.admin.store');
 
 
+Route::middleware('auth')->group(function () {
+    Route::get('/my-messages', [MessageController::class, 'userMessages'])
+        ->name('user.messages');
+});
 

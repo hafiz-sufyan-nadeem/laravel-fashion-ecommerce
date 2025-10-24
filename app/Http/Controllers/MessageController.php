@@ -61,6 +61,22 @@ class MessageController extends Controller
         return redirect()->back()->with('success', 'Reply sent successfully!');
     }
 
+    public function userMessages()
+    {
+        $userId = auth()->id();
 
+        // sirf un messages ko lo jo user ne bheje
+        $messages = Message::with('replies')
+            ->where('user_id', $userId)
+            ->whereNull('parent_id') // sirf main messages, replies nahi
+            ->latest()
+            ->get();
 
+        // unread replies count (badge k liye)
+        $unreadRepliesCount = Message::whereHas('parent', function($query) use ($userId) {
+            $query->where('user_id', $userId);
+        })->where('is_read', 0)->count();
+
+        return view('frontend.messages.index', compact('messages', 'unreadRepliesCount'));
+    }
 }
