@@ -76,7 +76,9 @@
     }
 </style>
 
-
+<form action="{{ route('home') }}" method="GET">
+    <button type="submit" class="btn btn-primary" style="color: white; background: black; border-radius: 3px; margin-left: 10px; font-weight: bold; cursor: pointer">Home</button>
+</form>
 
 <div class="message-box">
     <h2>Message Admin</h2>
