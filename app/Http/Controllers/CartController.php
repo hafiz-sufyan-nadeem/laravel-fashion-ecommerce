@@ -135,6 +135,7 @@ class CartController extends Controller
             ]);
         }
 
+        $order->load('orderItems.product');
         Mail::to($request->email)->send(new OrderPlacedMail($order));
 
         // Clear the cart
