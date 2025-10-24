@@ -6,6 +6,9 @@ use App\Models\CartItem;
 use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use App\Mail\OrderPlacedMail;
+use Illuminate\Support\Facades\Mail;
+
 
 class CartController extends Controller
 {
@@ -131,6 +134,9 @@ class CartController extends Controller
                 'subtotal' => $item->price * $item->quantity
             ]);
         }
+
+        Mail::to($request->email)->send(new OrderPlacedMail($order));
+
         // Clear the cart
         CartItem::where('user_id', auth()->id())->delete();
 
