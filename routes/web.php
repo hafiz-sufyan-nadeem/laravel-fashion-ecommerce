@@ -85,3 +85,14 @@ Route::middleware('auth')->group(function () {
         ->name('user.messages');
 });
 
+
+
+use Illuminate\Support\Facades\Mail;
+
+Route::get('/mail-test', function() {
+    Mail::raw('Testing email from Laravel project!', function ($message) {
+        $message->to('test@example.com')
+            ->subject('Test Email');
+    });
+    return '✅ Test mail sent! Check your Mailtrap inbox.';
+});
