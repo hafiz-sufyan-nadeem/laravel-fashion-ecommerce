@@ -41,7 +41,6 @@
 
         #paypal-button-container {
             display: none;
-            font-weight: bold;
             margin-top: 20px;
         }
 
@@ -157,13 +156,14 @@
         // Function to toggle buttons
         function toggleButtons() {
             if (paypalRadio.checked) {
-                codBtn.style.display = 'none';
+                codBtn.style.display = 'block'; // show place order button too
                 paypalContainer.style.display = 'block';
-            } else {
+            } else if (codRadio.checked) {
                 codBtn.style.display = 'block';
                 paypalContainer.style.display = 'none';
             }
         }
+
 
         // Attach event listeners
         paypalRadio.addEventListener('change', toggleButtons);
