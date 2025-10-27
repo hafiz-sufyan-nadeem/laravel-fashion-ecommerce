@@ -40,7 +40,7 @@
         }
 
         #paypal-button-container {
-            display: none !important;
+            display: none;
             margin-top: 20px;
         }
 
@@ -144,58 +144,77 @@
 </div>
 
 <!-- PayPal Script -->
+<!-- PayPal Script -->
 <script>
-    const codBtn = document.getElementById('cod-btn');
-    const paypalContainer = document.getElementById('paypal-button-container');
+    document.addEventListener("DOMContentLoaded", function() {
 
-    document.querySelectorAll('input[name="payment_method"]').forEach((input) => {
-        input.addEventListener('change', function() {
-            if (this.value === 'COD') {
-                codBtn.style.display = 'block';
-                paypalContainer.style.display = 'none';
-            } else {
+        const codBtn = document.getElementById('cod-btn');
+        const paypalContainer = document.getElementById('paypal-button-container');
+        const paypalRadio = document.getElementById('paypal');
+        const codRadio = document.getElementById('cod');
+
+        // Function to toggle buttons
+        function toggleButtons() {
+            if (paypalRadio.checked) {
                 codBtn.style.display = 'none';
                 paypalContainer.style.display = 'block';
+            } else {
+                codBtn.style.display = 'block';
+                paypalContainer.style.display = 'none';
             }
-        });
-    });
-
-    // Make sure PayPal renders correctly
-    paypal.Buttons({
-        createOrder: function(data, actions) {
-            return fetch('{{ route('checkout.paypal') }}', {
-                method: 'post',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                },
-                body: JSON.stringify({
-                    firstname: document.getElementById('fname').value,
-                    email: document.getElementById('email').value,
-                    address: document.getElementById('adr').value,
-                    city: document.getElementById('city').value,
-                    state: document.getElementById('state').value,
-                    zip: document.getElementById('zip').value,
-                })
-            }).then(res => res.json())
-                .then(data => data.id);
-        },
-        onApprove: function(data, actions) {
-            return fetch('{{ route('checkout.paypal.capture') }}', {
-                method: 'post',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                },
-                body: JSON.stringify({ orderID: data.orderID })
-            }).then(res => res.json())
-                .then(details => {
-                    alert('Transaction completed by ' + details.payer.name.given_name);
-                    window.location.href = '/my-orders';
-                });
         }
-    }).render('#paypal-button-container');
+
+        // Attach event listeners
+        paypalRadio.addEventListener('change', toggleButtons);
+        codRadio.addEventListener('change', toggleButtons);
+
+        // Run once at start
+        toggleButtons();
+
+        // ✅ Initialize PayPal Button
+        if (typeof paypal !== "undefined") {
+            paypal.Buttons({
+                createOrder: function(data, actions) {
+                    return fetch('{{ route('checkout.paypal') }}', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                        },
+                        body: JSON.stringify({
+                            firstname: document.getElementById('fname').value,
+                            email: document.getElementById('email').value,
+                            address: document.getElementById('adr').value,
+                            city: document.getElementById('city').value,
+                            state: document.getElementById('state').value,
+                            zip: document.getElementById('zip').value,
+                        })
+                    })
+                        .then(res => res.json())
+                        .then(data => data.id);
+                },
+                onApprove: function(data, actions) {
+                    return fetch('{{ route('checkout.paypal.capture') }}', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                        },
+                        body: JSON.stringify({ orderID: data.orderID })
+                    })
+                        .then(res => res.json())
+                        .then(details => {
+                            alert('Transaction completed by ' + details.payer.name.given_name);
+                            window.location.href = '/my-orders';
+                        });
+                }
+            }).render('#paypal-button-container');
+        } else {
+            console.error("PayPal SDK failed to load.");
+        }
+    });
 </script>
+
 
 
 <!-- Bootstrap JS -->
