@@ -172,7 +172,7 @@
         // Run once at start
         toggleButtons();
 
-        // ✅ Initialize PayPal Button
+        // Initialize PayPal Button
         if (typeof paypal !== "undefined") {
             paypal.Buttons({
                 createOrder: function(data, actions) {
