@@ -8,6 +8,8 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Mail\OrderPlacedMail;
 use Illuminate\Support\Facades\Mail;
+use Srmklive\PayPal\Services\PayPal as PayPalClient;
+
 
 
 class CartController extends Controller
@@ -143,5 +145,100 @@ class CartController extends Controller
 
         return redirect()->route('orders.show',$order->id)->with('success', 'Order placed successfully!');
     }
+
+
+public function createPaypalOrder(Request $request)
+{
+    $cartItems = CartItem::with('product')->where('user_id', auth()->id())->get();
+
+    if($cartItems->isEmpty()){
+        return response()->json(['error' => 'Cart is empty!'], 400);
+    }
+
+    $subtotal = 0;
+    foreach ($cartItems as $item) {
+        $subtotal += $item->price * $item->quantity;
+    }
+    $tax = round($subtotal * 0.16, 2);
+    $shipping = $subtotal >= 1000 ? 0 : 20;
+    $grandTotal = round($subtotal + $tax + $shipping, 2);
+
+    $provider = new PayPalClient;
+    $provider->setApiCredentials(config('paypal'));
+    $provider->getAccessToken();
+
+    $order = $provider->createOrder([
+        "intent" => "CAPTURE",
+        "purchase_units" => [
+            [
+                "amount" => [
+                    "currency_code" => "USD",
+                    "value" => $grandTotal
+                ]
+            ]
+        ]
+    ]);
+
+    return response()->json($order);
+}
+
+public function capturePaypalOrder(Request $request)
+{
+    $request->validate([
+        'orderID' => 'required'
+    ]);
+
+    $provider = new PayPalClient;
+    $provider->setApiCredentials(config('paypal'));
+    $provider->getAccessToken();
+
+    $capture = $provider->capturePaymentOrder($request->orderID);
+
+    if(isset($capture['status']) && $capture['status'] == 'COMPLETED'){
+
+        // Ab ye wahi COD logic jaise order save karte hain
+        $cartItems = CartItem::with('product')->where('user_id', auth()->id())->get();
+
+        $subtotal = 0;
+        foreach ($cartItems as $item) {
+            $subtotal += $item->price * $item->quantity;
+        }
+        $tax = round($subtotal * 0.16, 2);
+        $shipping = $subtotal >= 1000 ? 0 : 20;
+        $grandTotal = round($subtotal + $tax + $shipping, 2);
+
+        $order = Order::create([
+            'user_id' => auth()->id(),
+            'name' => $request->firstname ?? auth()->user()->name,
+            'email' => $request->email ?? auth()->user()->email,
+            'address' => $request->address ?? '',
+            'city' => $request->city ?? '',
+            'state' => $request->state ?? '',
+            'zip' => $request->zip ?? '',
+            'payment_method' => 'PayPal',
+            'total_amount' => $grandTotal,
+        ]);
+
+        foreach($cartItems as $item){
+            $order->orderItems()->create([
+                'product_id' => $item->product_id,
+                'quantity' => $item->quantity,
+                'price' => $item->price,
+                'subtotal' => $item->price * $item->quantity
+            ]);
+        }
+
+        $order->load('orderItems.product');
+        Mail::to($order->email)->send(new OrderPlacedMail($order));
+
+        // Clear cart
+        CartItem::where('user_id', auth()->id())->delete();
+
+        return response()->json(['status' => 'success', 'message' => 'Payment completed and order placed!', 'payer' => $capture['payer']]);
+    }
+
+    return response()->json(['status' => 'failed', 'message' => 'Payment not completed!'], 400);
+}
+
 
 }

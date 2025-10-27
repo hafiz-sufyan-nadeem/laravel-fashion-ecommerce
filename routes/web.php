@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Mail;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\AuthController;
 use App\Http\Middleware\AdminMiddleware;
@@ -11,6 +12,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\AdminOrderController;
 use App\Http\Controllers\AdminCustomerController;
 use App\Http\Controllers\MessageController;
+
 
 // ================== ADMIN ROUTES ==================
 Route::middleware([AdminMiddleware::class])->prefix('admin')->name('admin.')->group(function () {
@@ -87,7 +89,6 @@ Route::middleware('auth')->group(function () {
 
 
 
-use Illuminate\Support\Facades\Mail;
 
 Route::get('/mail-test', function() {
     Mail::raw('Testing email from Laravel project!', function ($message) {
@@ -96,3 +97,10 @@ Route::get('/mail-test', function() {
     });
     return '✅ Test mail sent! Check your Mailtrap inbox.';
 });
+
+
+// PayPal order create
+Route::post('/checkout/paypal', [CartController::class, 'createPaypalOrder'])->name('checkout.paypal')->middleware('auth');
+
+// PayPal order capture
+Route::post('/checkout/paypal/capture', [CartController::class, 'capturePaypalOrder'])->name('checkout.paypal.capture')->middleware('auth');
