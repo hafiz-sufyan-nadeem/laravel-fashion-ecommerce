@@ -41,6 +41,7 @@
 
         #paypal-button-container {
             display: none;
+            font-weight: bold;
             margin-top: 20px;
         }
 
