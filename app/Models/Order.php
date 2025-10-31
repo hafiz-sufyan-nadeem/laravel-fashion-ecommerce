@@ -15,6 +15,7 @@ class Order extends Model
         'state',
         'zip',
         'payment_method',
+        'transaction_id',
         'total_amount',
         'status'
     ];
