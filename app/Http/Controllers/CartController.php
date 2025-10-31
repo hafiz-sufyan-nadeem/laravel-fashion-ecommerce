@@ -216,9 +216,9 @@ public function capturePaypalOrder(Request $request)
             'state' => $request->state ?? '',
             'zip' => $request->zip ?? '',
             'payment_method' => 'PayPal',
-//            'transaction_id' => $capture['id'] ?? null,
-//            'total_amount' => $grandTotal,
-//            'status' => 'completed'
+            'transaction_id' => $capture['id'] ?? null,
+            'total_amount' => $grandTotal,
+            'status' => 'completed'
         ]);
 
         foreach($cartItems as $item){
