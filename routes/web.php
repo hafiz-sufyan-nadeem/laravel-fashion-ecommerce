@@ -99,8 +99,6 @@ Route::get('/mail-test', function() {
 });
 
 
-// PayPal order create
-Route::post('/checkout/paypal', [CartController::class, 'createPaypalOrder'])->name('checkout.paypal')->middleware('auth');
-
-// PayPal order capture
-Route::post('/checkout/paypal/capture', [CartController::class, 'capturePaypalOrder'])->name('checkout.paypal.capture')->middleware('auth');
+Route::post('/checkout/fake-paypal', [CartController::class, 'fakePaypalPayment'])
+    ->name('checkout.fake.paypal')
+    ->middleware('auth');

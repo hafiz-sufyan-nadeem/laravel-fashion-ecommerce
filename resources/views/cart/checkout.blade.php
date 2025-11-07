@@ -176,7 +176,7 @@
         if (typeof paypal !== "undefined") {
             paypal.Buttons({
                 createOrder: function(data, actions) {
-                    return fetch('{{ route('checkout.paypal') }}', {
+                    return fetch('{{ route('checkout.fake.paypal') }}', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
@@ -192,23 +192,20 @@
                         })
                     })
                         .then(res => res.json())
-                        .then(data => data.id);
-                },
-                onApprove: function(data, actions) {
-                    return fetch('{{ route('checkout.paypal.capture') }}', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                        },
-                        body: JSON.stringify({ orderID: data.orderID })
-                    })
-                        .then(res => res.json())
-                        .then(details => {
-                            alert('Transaction completed by ' + details.payer.name.given_name);
-                            window.location.href = '/my-orders';
+                        .then(data => {
+                            if (data.status === 'success') {
+                                alert('💰 Fake PayPal Payment Successful! Order ID: ' + data.order_id);
+                                window.location.href = '/my-orders';
+                            } else {
+                                alert('Payment Error: ' + data.message);
+                            }
                         });
+                },
+                onApprove: function() {
+                    // Is case me kuch nahi karna, kyunki fake route already order bana chuka hai
+                    return Promise.resolve();
                 }
+
             }).render('#paypal-button-container');
         } else {
             console.error("PayPal SDK failed to load.");

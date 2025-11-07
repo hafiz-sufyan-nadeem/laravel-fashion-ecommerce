@@ -182,31 +182,25 @@ public function createPaypalOrder(Request $request)
     return response()->json($order);
 }
 
-public function capturePaypalOrder(Request $request)
-{
-    $request->validate([
-        'orderID' => 'required'
-    ]);
 
-    $provider = new PayPalClient;
-    $provider->setApiCredentials(config('paypal'));
-    $provider->getAccessToken();
-
-    $capture = $provider->capturePaymentOrder($request->orderID);
-
-    if(isset($capture['status']) && $capture['status'] == 'COMPLETED'){
-
-        // Ab ye wahi COD logic jaise order save karte hain
+    public function fakePaypalPayment(Request $request)
+    {
         $cartItems = CartItem::with('product')->where('user_id', auth()->id())->get();
+
+        if ($cartItems->isEmpty()) {
+            return response()->json(['error' => 'Cart is empty!'], 400);
+        }
 
         $subtotal = 0;
         foreach ($cartItems as $item) {
             $subtotal += $item->price * $item->quantity;
         }
+
         $tax = round($subtotal * 0.16, 2);
         $shipping = $subtotal >= 1000 ? 0 : 20;
         $grandTotal = round($subtotal + $tax + $shipping, 2);
 
+        // Fake PayPal payment successful
         $order = Order::create([
             'user_id' => auth()->id(),
             'name' => $request->firstname ?? auth()->user()->name,
@@ -215,13 +209,12 @@ public function capturePaypalOrder(Request $request)
             'city' => $request->city ?? '',
             'state' => $request->state ?? '',
             'zip' => $request->zip ?? '',
-            'payment_method' => 'PayPal',
-            'transaction_id' => $capture['id'] ?? null,
+            'payment_method' => 'PayPal (Test Mode)',
             'total_amount' => $grandTotal,
             'status' => 'completed'
         ]);
 
-        foreach($cartItems as $item){
+        foreach ($cartItems as $item) {
             $order->orderItems()->create([
                 'product_id' => $item->product_id,
                 'quantity' => $item->quantity,
@@ -230,17 +223,14 @@ public function capturePaypalOrder(Request $request)
             ]);
         }
 
-        $order->load('orderItems.product');
-        Mail::to($order->email)->send(new OrderPlacedMail($order));
-
-        // Clear cart
         CartItem::where('user_id', auth()->id())->delete();
 
-        return response()->json(['status' => 'success', 'message' => 'Payment completed and order placed!', 'payer' => $capture['payer']]);
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Fake PayPal payment successful!',
+            'order_id' => $order->id
+        ]);
     }
-
-    return response()->json(['status' => 'failed', 'message' => 'Payment not completed!'], 400);
-}
 
 
 }
