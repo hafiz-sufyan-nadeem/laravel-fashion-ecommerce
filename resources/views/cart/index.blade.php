@@ -44,7 +44,7 @@
     <div class="summary-box">
         <p><span>Subtotal:</span> <span>PKR {{ $subtotal }}</span></p>
         <p><span>Tax:</span> <span>PKR {{ $tax }}</span></p>
-        <p><span>Shipping:</span> <span>{{ $shipping == 0 ? 'Free' : '$'.$shipping }}</span></p>
+        <p><span>Shipping:</span> <span>{{ $shipping == 0 ? 'Free' : 'PKR '.$shipping }}</span></p>
         <hr>
         <p class="grand"><span>Grand Total:</span> <span>PKR {{ $grandTotal }}</span></p>
 
