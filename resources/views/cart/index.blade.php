@@ -200,7 +200,7 @@
     .free-note {
         color: green;
         font-size: 14px;
-        text-align: center;
+        /*text-align: center;*/
         margin-top: 10px;
     }
 
