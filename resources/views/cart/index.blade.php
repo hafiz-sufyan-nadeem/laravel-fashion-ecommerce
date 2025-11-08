@@ -201,7 +201,7 @@
         color: green;
         font-size: 14px;
         text-align: center;
-        margin-top: 10px;
+        /*margin-top: 10px;*/
     }
 
 
