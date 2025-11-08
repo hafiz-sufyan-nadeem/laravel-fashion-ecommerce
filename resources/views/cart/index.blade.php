@@ -182,7 +182,7 @@
     .btn-checkout {
         display: block;
         width: 100%;
-        /*padding: 12px;*/
+        padding: 12px;
         background: black;
         color: white;
         text-align: center;
