@@ -92,7 +92,7 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/mail-test', function() {
     Mail::raw('Testing email from Laravel project!', function ($message) {
-        $message->to('test@example.com')
+        $message->to('hafizsufyan398@gmail.com')
             ->subject('Test Email');
     });
     return '✅ Test mail sent! Check your Mailtrap inbox.';
