@@ -102,3 +102,5 @@ Route::get('/mail-test', function() {
 Route::post('/checkout/fake-paypal', [CartController::class, 'fakePaypalPayment'])
     ->name('checkout.fake.paypal')
     ->middleware('auth');
+
+
