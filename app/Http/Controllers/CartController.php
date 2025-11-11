@@ -138,7 +138,16 @@ class CartController extends Controller
         }
 
         $order->load('orderItems.product');
-        Mail::to($request->email)->send(new OrderPlacedMail($order));
+        // Prefer logged-in user's email, fallback to request email
+        $recipient = auth()->user()->email ?? $request->email;
+
+        try {
+            Mail::to($recipient)->send(new OrderPlacedMail($order));
+        } catch (\Exception $e) {
+            \Log::error('Order email failed: '.$e->getMessage());
+            // optional: flash message to admin or continue silently
+        }
+
 
         // Clear the cart
         CartItem::where('user_id', auth()->id())->delete();

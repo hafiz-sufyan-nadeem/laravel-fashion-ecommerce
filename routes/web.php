@@ -90,13 +90,20 @@ Route::middleware('auth')->group(function () {
 
 
 
+use Illuminate\Support\Facades\Mail;
+
 Route::get('/mail-test', function() {
-    Mail::raw('Testing email from Laravel project!', function ($message) {
-        $message->to('hafizsufyan398@gmail.com')
+    try {
+        Mail::raw('Testing email from Laravel project!', function ($message) {
+            $message->to('hafizsufyan398@gmail.com') // recipient
             ->subject('Test Email');
-    });
-    return '✅ Test mail sent! Check your Mailtrap inbox.';
+        });
+        return '✅ Test mail sent! Check your inbox.';
+    } catch (\Exception $e) {
+        return '❌ Mail failed: ' . $e->getMessage();
+    }
 });
+
 
 
 Route::post('/checkout/fake-paypal', [CartController::class, 'fakePaypalPayment'])
