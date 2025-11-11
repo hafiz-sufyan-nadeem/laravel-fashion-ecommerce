@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Mail\MailManager;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\AuthController;
 use App\Http\Middleware\AdminMiddleware;
@@ -12,7 +13,6 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\AdminOrderController;
 use App\Http\Controllers\AdminCustomerController;
 use App\Http\Controllers\MessageController;
-
 
 // ================== ADMIN ROUTES ==================
 Route::middleware([AdminMiddleware::class])->prefix('admin')->name('admin.')->group(function () {
@@ -93,7 +93,7 @@ Route::middleware('auth')->group(function () {
 Route::get('/mail-test', function() {
     try {
         Mail::raw('Testing email from Laravel project!', function ($message) {
-            $message->to('hafizsufyan398@gmail.com') // recipient
+            $message->to('hafizsufyan398@gmail.com') // tumhara personal email
             ->subject('Test Email');
         });
         return '✅ Test mail sent! Check your inbox.';
@@ -101,6 +101,7 @@ Route::get('/mail-test', function() {
         return '❌ Mail failed: ' . $e->getMessage();
     }
 });
+
 
 
 

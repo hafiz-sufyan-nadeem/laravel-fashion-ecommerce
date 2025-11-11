@@ -140,6 +140,7 @@ class CartController extends Controller
         $order->load('orderItems.product');
         // Prefer logged-in user's email, fallback to request email
         $recipient = auth()->user()->email ?? $request->email;
+        Mail::to($recipient)->send(new OrderPlacedMail($order));
 
         try {
             Mail::to($recipient)->send(new OrderPlacedMail($order));
