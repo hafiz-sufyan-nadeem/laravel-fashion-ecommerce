@@ -90,8 +90,6 @@ Route::middleware('auth')->group(function () {
 
 
 
-use Illuminate\Support\Facades\Mail;
-
 Route::get('/mail-test', function() {
     try {
         Mail::raw('Testing email from Laravel project!', function ($message) {
