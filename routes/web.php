@@ -1,8 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Mail;
-use Illuminate\Mail\MailManager;
+use Illuminate\Support\Facades\Mail; // sirf ek baar
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\AuthController;
 use App\Http\Middleware\AdminMiddleware;
@@ -28,38 +27,20 @@ Route::middleware([AdminMiddleware::class])->prefix('admin')->name('admin.')->gr
 
     Route::resource('categories', \App\Http\Controllers\AdminCategoryController::class);
 
-
-    Route::get('/messages', [MessageController::class, 'index'])->name('messages');
     Route::get('/messages', [MessageController::class, 'index'])->name('messages');
     Route::get('/messages/{id}', [MessageController::class, 'show'])->name('messages.show');
     Route::post('/messages/{id}/reply', [MessageController::class, 'reply'])->name('messages.reply');
-
-    Route::post('/messages/{id}/reply', [MessageController::class, 'reply'])->name('messages.reply');
-
 });
 
-
 // ================== AUTH ROUTES ==================
-Route::get('/login', function () {
-    return view('auth.login');
-})->name('login');
-
-Route::get('/register', function () {
-    return view('auth.register');
-})->name('register');
-
+Route::get('/login', fn() => view('auth.login'))->name('login');
+Route::get('/register', fn() => view('auth.register'))->name('register');
 Route::post('/login', [AuthController::class, 'login'])->name('login.post');
 Route::post('/register', [AuthController::class, 'register'])->name('register.post');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-
 // ================== FRONTEND ROUTES ==================
-//Route::get('/home', function () {
-//    return view('frontend.layouts.home');
-//})->name('home');
-
 Route::get('/', [HomeController::class, 'home'])->name('home');
-
 Route::get('/products/{id}', [HomeController::class, 'show'])->name('products.show');
 
 // Cart
@@ -71,29 +52,25 @@ Route::delete('/cart/delete/{id}', [CartController::class, 'delete'])->name('car
 // Checkout
 Route::get('/checkout', [CartController::class, 'checkoutForm'])->middleware('auth')->name('checkout.form');
 Route::post('/checkout/store', [CartController::class, 'checkout'])->middleware('auth')->name('checkout.store');
+Route::post('/checkout/fake-paypal', [CartController::class, 'fakePaypalPayment'])->middleware('auth')->name('checkout.fake.paypal');
 
 // Orders
 Route::get('/orders/{order}', [OrderController::class, 'showOrders'])->middleware('auth')->name('orders.show');
 Route::get('/my-orders', [OrderController::class, 'myOrders'])->middleware('auth')->name('my.orders');
 
-
-// Contact form/MSG's
-Route::get('/contact-admin', [App\Http\Controllers\MessageController::class, 'create'])->name('contact.admin');
-Route::post('/contact-admin/store', [App\Http\Controllers\MessageController::class, 'store'])->name('contact.admin.store');
-
+// Contact form / Messages
+Route::get('/contact-admin', [MessageController::class, 'create'])->name('contact.admin');
+Route::post('/contact-admin/store', [MessageController::class, 'store'])->name('contact.admin.store');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/my-messages', [MessageController::class, 'userMessages'])
-        ->name('user.messages');
+    Route::get('/my-messages', [MessageController::class, 'userMessages'])->name('user.messages');
 });
 
-
-
-
+// Mail test
 Route::get('/mail-test', function() {
     try {
         Mail::raw('Testing email from Laravel project!', function ($message) {
-            $message->to('hafizsufyan398@gmail.com') // tumhara personal email
+            $message->to('hafizsufyan398@gmail.com') // apna email
             ->subject('Test Email');
         });
         return '✅ Test mail sent! Check your inbox.';
@@ -101,12 +78,3 @@ Route::get('/mail-test', function() {
         return '❌ Mail failed: ' . $e->getMessage();
     }
 });
-
-
-
-
-Route::post('/checkout/fake-paypal', [CartController::class, 'fakePaypalPayment'])
-    ->name('checkout.fake.paypal')
-    ->middleware('auth');
-
-
