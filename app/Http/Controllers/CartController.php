@@ -151,7 +151,7 @@ class CartController extends Controller
 
 
         // Clear the cart
-//        CartItem::where('user_id', auth()->id())->delete();
+        CartItem::where('user_id', auth()->id())->delete();
 
         return redirect()->route('orders.show',$order->id)->with('success', 'Order placed successfully!');
     }
