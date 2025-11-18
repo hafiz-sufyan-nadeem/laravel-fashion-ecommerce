@@ -100,10 +100,10 @@
                     <label class="form-check-label" for="cod">Cash on Delivery</label>
                 </div>
 
-{{--                <div class="form-check mt-2">--}}
-{{--                    <input class="form-check-input" type="radio" name="payment_method" id="paypal" value="PayPal">--}}
-{{--                    <label class="form-check-label" for="paypal">Pay with PayPal</label>--}}
-{{--                </div>--}}
+                <div class="form-check mt-2">
+                    <input class="form-check-input" type="radio" name="payment_method" id="paypal" value="PayPal">
+                    <label class="form-check-label" for="paypal">Pay with PayPal</label>
+                </div>
 
                 <div class="form-check mt-3">
                     <input class="form-check-input" type="checkbox" checked name="sameadr" id="sameadr">
