@@ -21,7 +21,7 @@ class AdminOrderController extends Controller
     public function show(Order $order)
     {
         $order->load('orderItems.product', 'user');
-        return view('admin.orders.show', compact('order'));
+//        return view('admin.orders.show', compact('order'));
     }
 
     // update status
