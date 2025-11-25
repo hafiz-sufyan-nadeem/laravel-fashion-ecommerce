@@ -156,7 +156,7 @@
         // Function to toggle buttons
         function toggleButtons() {
             if (paypalRadio.checked) {
-                codBtn.style.display = 'block'; // show place order button too
+                codBtn.style.display = 'block'; // show plac order button too
                 paypalContainer.style.display = 'block';
             } else if (codRadio.checked) {
                 codBtn.style.display = 'block';
@@ -220,3 +220,4 @@
 
 </body>
 </html>
+{{----}}
