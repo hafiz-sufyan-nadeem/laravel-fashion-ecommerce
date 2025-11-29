@@ -55,6 +55,17 @@
                 </div>
 
                 <div class="mb-3">
+                    <label><strong>On Sale?</strong></label>
+                    <input type="checkbox" name="on_sale" value="1">
+                </div>
+
+                <div class="mb-3">
+                    <label><strong>Sale Price:</strong></label>
+                    <input type="number" step="0.01" name="sale_price" class="form-control" placeholder="Sale Price (optional)">
+                </div>
+
+
+                <div class="mb-3">
                     <label for="inputDetail" class="form-label"><strong>Description:</strong></label>
                     <textarea
                         class="form-control @error('description') is-invalid @enderror"

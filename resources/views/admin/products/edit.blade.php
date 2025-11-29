@@ -101,6 +101,17 @@
                     @enderror
                 </div>
 
+                <div class="mb-3">
+                    <label><strong>On Sale?</strong></label>
+                    <input type="checkbox" name="on_sale" value="1" {{ $product->on_sale ? 'checked' : '' }}>
+                </div>
+
+                <div class="mb-3">
+                    <label><strong>Sale Price:</strong></label>
+                    <input type="number" step="0.01" name="sale_price" value="{{ $product->sale_price }}" class="form-control">
+                </div>
+
+
                 <button type="submit" class="btn btn-success"><i class="fa-solid fa-floppy-disk"></i> Update</button>
             </form>
 
