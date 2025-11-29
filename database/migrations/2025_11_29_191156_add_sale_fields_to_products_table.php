@@ -9,20 +9,18 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+    public function up()
     {
         Schema::table('products', function (Blueprint $table) {
-            //
+            $table->boolean('on_sale')->default(false);
+            $table->decimal('sale_price', 10, 2)->nullable();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
-    public function down(): void
+    public function down()
     {
         Schema::table('products', function (Blueprint $table) {
-            //
+            $table->dropColumn(['on_sale', 'sale_price']);
         });
     }
 };
