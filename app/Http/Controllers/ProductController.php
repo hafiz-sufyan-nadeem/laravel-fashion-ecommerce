@@ -42,13 +42,16 @@ class ProductController extends Controller
             $data['image'] = $path;
         }
 
+        // Add sale fields manually
+        $data['on_sale'] = $request->has('on_sale');
+        $data['sale_price'] = $request->sale_price;
+
         Product::create($data);
+
         return redirect()->route('admin.products.index')
             ->with('success', 'Product created successfully.');
-
-        $product->on_sale = $request->has('on_sale');
-        $product->sale_price = $request->sale_price;
     }
+
 
     /**
      * Display the specified resource.
@@ -73,11 +76,15 @@ class ProductController extends Controller
     public function update(ProductUpdateRequest $request, Product $product)
     {
         $product->update($request->validated());
+
         $product->on_sale = $request->has('on_sale');
         $product->sale_price = $request->sale_price;
 
+        $product->save(); // REQUIRED !!!
+
         return redirect()->route('admin.products.index')->with('success', 'Product updated successfully.');
     }
+
 
     /**
      * Remove the specified resource from storage.

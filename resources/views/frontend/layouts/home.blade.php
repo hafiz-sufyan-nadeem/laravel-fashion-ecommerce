@@ -172,9 +172,21 @@
                                           <div class="col-lg-4 col-sm-4">
                                               <div class="box_main">
                                                   <h4 class="shirt_text">{{ $product->name }}</h4>
-                                                  <p class="price_text">
-                                                      Price <span style="color: #262626;">PKR {{ $product->price }}</span>
-                                                  </p>
+
+                                 @if($product->on_sale)
+                                 <p class="price_text">
+                                    <span style="text-decoration: line-through; color: gray;">
+                                        PKR {{ $product->price }}
+                                    </span>
+                                    <span style="color: red; font-weight: bold;">
+                                      PKR {{ $product->sale_price }}</span>
+                                    </p>
+                                     @else
+                                     <p class="price_text">
+                                      Price <span style="color: #262626;">PKR {{ $product->price }}</span>
+                                      </p>
+                                     @endif
+
                                                   <div class="tshirt_img">
                                                       <img src="{{ asset('storage/'.$product->image) }}">
                                                   </div>
