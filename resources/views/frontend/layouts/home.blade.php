@@ -347,7 +347,7 @@
                                     </span>
                                                           <span style="color: red; font-weight: bold;">
                                       PKR {{ $product->sale_price }}</span>
-{{--                                                      </p>--}}
+                                                      </p>
                                                   @else
                                                       <p class="price_text">
                                                           Price <span style="color: #262626;">PKR {{ $product->price }}</span>
