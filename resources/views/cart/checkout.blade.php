@@ -183,7 +183,7 @@
                             'X-CSRF-TOKEN': '{{ csrf_token() }}'
                         },
                         body: JSON.stringify({
-                            firstname: document.getElementById('fnanme').value,
+                            firstname: document.getElementById('fname').value,
                             email: document.getElementById('email').value,
                             address: document.getElementById('adr').value,
                             city: document.getElementById('city').value,
