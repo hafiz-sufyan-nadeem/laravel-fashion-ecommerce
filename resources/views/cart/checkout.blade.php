@@ -188,7 +188,7 @@
                             address: document.getElementById('adr').value,
                             city: document.getElementById('city').value,
                             state: document.getElementById('state').value,
-                            zip: document.getElementById('zip').value,
+                            zip: document.getElementById('zipp').value,
                         })
                     })
                         .then(res => res.json())
