@@ -102,7 +102,7 @@
                 </div>
 
                 <div class="mb-3">
-                    <label><strong>On Sale?</strong></label>
+                    <label><strong>On Sale</strong></label>
                     <input type="checkbox" name="on_sale" value="1" {{ $product->on_sale ? 'checked' : '' }}>
                 </div>
 
