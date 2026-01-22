@@ -100,7 +100,7 @@
                     <div class="form-text text-danger">{{ $message }}</div>
                     @enderror
                 </div>
-hp
+
 
 
                 <button type="submit" class="btn btn-success"><i class="fa-solid fa-floppy-disk"></i> Submit</button>
