@@ -28,4 +28,3 @@ class OrderStatusUpdatedMail extends Mailable
             ->view('emails.order_status_updated');
     }
 }
-Error
