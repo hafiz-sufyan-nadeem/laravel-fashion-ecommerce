@@ -101,7 +101,7 @@
                                       @endphp
                                       <li class="mr-2">
                                           <a href="{{ route('cart.view') }}" class="btn btn-info">
-                                              <i class="fa fa-shopping-cart" aria-hidden="false"></i>
+                                              <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                                               Cart <span class="badge badge-pill badge-danger">{{ $cartCount }}</span>
                                           </a>
                                       </li>
