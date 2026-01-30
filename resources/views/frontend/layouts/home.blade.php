@@ -178,7 +178,7 @@
                                     <span style="text-decoration: line-through; color: gray;">
                                         PKR {{ $product->price }}
                                     </span>
-                                    <span style="color: red; font-weight: bold;">
+                                    <span style="color: #ffd500; font-weight: bold;">
                                       PKR {{ $product->sale_price }}</span>
                                     </p>
                                      @else
