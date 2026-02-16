@@ -74,7 +74,7 @@
                     @enderror
                 </div>
 
-                <div class="mb-6">
+                <div class="mb-3">
                     <label class="form-label"><strong>Image:</strong></label>
                     <input type="file" name="image" class="form-control">
                     @error('image')
